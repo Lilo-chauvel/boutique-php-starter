@@ -3,7 +3,7 @@ $price = "29.99€";
 $result = $price + 10;
 var_dump($result);
 
-echo "<br/>"
+echo "<br/>";
 $a = "5";
 $b = 3;
 $c = $a + $b;

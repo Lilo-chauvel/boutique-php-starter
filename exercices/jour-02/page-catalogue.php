@@ -227,13 +227,13 @@ $catalog = [
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src=<?= $catalog["AIR FORCE 1"]["image"][0] ?> class="d-block w-100" alt="...">
+                    <img src=<?= $catalog["AIR FORCE 1"]["image"][0] ?> class="d-block w-100 rounded-3" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src=<?= $catalog["AIR FORCE 1"]["image"][1] ?> class="d-block w-100" alt="...">
+                    <img src=<?= $catalog["AIR FORCE 1"]["image"][1] ?> class="d-block w-100 rounded-3" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src=<?= $catalog["AIR FORCE 1"]["image"][2] ?>class="d-block w-100" alt="...">
+                    <img src=<?= $catalog["AIR FORCE 1"]["image"][2] ?>class="d-block w-100 rounded-3" alt="...">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
@@ -293,13 +293,13 @@ $catalog = [
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src=<?= $catalog["Nike Dunk Low"]["image"][0] ?> class="d-block w-100" alt="...">
+                    <img src=<?= $catalog["Nike Dunk Low"]["image"][0] ?> class="d-block w-100 rounded-3" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src=<?= $catalog["Nike Dunk Low"]["image"][1] ?> class="d-block w-100" alt="...">
+                    <img src=<?= $catalog["Nike Dunk Low"]["image"][1] ?> class="d-block w-100 rounded-3" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src=<?= $catalog["Nike Dunk Low"]["image"][2] ?>class="d-block w-100" alt="...">
+                    <img src=<?= $catalog["Nike Dunk Low"]["image"][2] ?>class="d-block w-100 rounded-3" alt="...">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
@@ -360,13 +360,13 @@ $catalog = [
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src=<?= $catalog["Adidas Ultraboost 22"]["image"][0] ?> class="d-block w-100" alt="...">
+                    <img src=<?= $catalog["Adidas Ultraboost 22"]["image"][0] ?> class="d-block w-100 rounded-3" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src=<?= $catalog["Adidas Ultraboost 22"]["image"][1] ?> class="d-block w-100" alt="...">
+                    <img src=<?= $catalog["Adidas Ultraboost 22"]["image"][1] ?> class="d-block w-100 rounded-3" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src=<?= $catalog["Adidas Ultraboost 22"]["image"][2] ?>class="d-block w-100" alt="...">
+                    <img src=<?= $catalog["Adidas Ultraboost 22"]["image"][2] ?>class="d-block w-100 rounded-3" alt="...">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
@@ -427,10 +427,10 @@ $catalog = [
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src=<?= $catalog["New Balance 550"]["image"][0] ?> class="d-block w-100" alt="...">
+                    <img src=<?= $catalog["New Balance 550"]["image"][0] ?> class="d-block w-100 rounded-3" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src=<?= $catalog["New Balance 550"]["image"][1] ?> class="d-block w-100" alt="...">
+                    <img src=<?= $catalog["New Balance 550"]["image"][1] ?> class="d-block w-100 rounded-3" alt="...">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
@@ -491,13 +491,13 @@ $catalog = [
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src=<?= $catalog["Puma RS-X"]["image"][0] ?> class="d-block w-100" alt="...">
+                    <img src=<?= $catalog["Puma RS-X"]["image"][0] ?> class="d-block w-100 rounded-3" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src=<?= $catalog["Puma RS-X"]["image"][1] ?> class="d-block w-100" alt="...">
+                    <img src=<?= $catalog["Puma RS-X"]["image"][1] ?> class="d-block w-100 rounded-3" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src=<?= $catalog["Puma RS-X"]["image"][2] ?>class="d-block w-100" alt="...">
+                    <img src=<?= $catalog["Puma RS-X"]["image"][2] ?>class="d-block w-100 rounded-3" alt="...">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
@@ -559,13 +559,13 @@ $catalog = [
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src=<?= $catalog["Converse Chuck Taylor Lift"]["image"][0] ?> class="d-block w-100" alt="...">
+                    <img src=<?= $catalog["Converse Chuck Taylor Lift"]["image"][0] ?> class="d-block w-100 rounded-3" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src=<?= $catalog["Converse Chuck Taylor Lift"]["image"][1] ?> class="d-block w-100" alt="...">
+                    <img src=<?= $catalog["Converse Chuck Taylor Lift"]["image"][1] ?> class="d-block w-100 rounded-3" alt="...">
                 </div>
                 <div class="carousel-item">
-                    <img src=<?= $catalog["Converse Chuck Taylor Lift"]["image"][2] ?>class="d-block w-100" alt="...">
+                    <img src=<?= $catalog["Converse Chuck Taylor Lift"]["image"][2] ?>class="d-block w-100 rounded-3" alt="...">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
