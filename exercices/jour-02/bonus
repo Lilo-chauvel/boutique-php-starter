@@ -1,0 +1,15 @@
+<?php
+$prix = [29.99, 9.99, 49.99, 19.99];
+
+sort($prix);  // Tri croissant → [9.99, 19.99, 29.99, 49.99]
+rsort($prix); // Tri décroissant
+
+// Pour les tableaux associatifs, utilise asort() ou ksort()
+// À toi de tester la différence !
+
+// Pour un tri personnalisé, utilise usort() avec l'opérateur <=>
+// Exemple : trier des produits par prix
+usort($produits, function($a, $b) {
+    // L'opérateur <=> retourne -1, 0 ou 1
+    // À toi de compléter...
+});
