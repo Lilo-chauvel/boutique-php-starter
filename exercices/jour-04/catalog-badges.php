@@ -40,6 +40,8 @@ $catalog = [
                 ],
             ],
             "stock" => "En stock",
+            "new" => false,
+            "discount" => 20
         ],
     "Nike Dunk Low" =>
         [
@@ -70,6 +72,8 @@ $catalog = [
                 ],
             ],
             "stock" => "Rupture",
+            "new" => true,
+            "discount" => 0,
 
         ],
     "Adidas Ultraboost 22" =>
@@ -101,6 +105,8 @@ $catalog = [
                 ],
             ],
             "stock" => "En stock",
+            "new" => true,
+            "discount" => 30,
 
         ],
     "New Balance 550" =>
@@ -132,6 +138,8 @@ $catalog = [
                 ],
             ],
             "stock" => "En stock",
+            "new" => false,
+            "discount" => 0,
         ],
     "Puma RS-X" =>
         [
@@ -162,6 +170,8 @@ $catalog = [
                 ],
             ],
             "stock" => "Rupture",
+            "new" => true,
+            "discount" => 10,
 
         ],
     "Converse Chuck Taylor Lift" =>
@@ -193,6 +203,8 @@ $catalog = [
                 ],
             ],
             "stock" => "En stock",
+            "new" => false,
+            "discount" => 15,
 
         ],
     "ASICS GEL-LYTE III" =>
@@ -224,6 +236,8 @@ $catalog = [
                 ],
             ],
             "stock" => "En stock",
+            "new" => true,
+            "discount" => 0,
 
         ],
     "VANS OLD SKOOL PRO" =>
@@ -255,10 +269,10 @@ $catalog = [
                 ],
             ],
             "stock" => "Rupture",
+            "new" => false,
+            "discount" => 0,
 
         ],
-
-
 ];
 
 ?>
@@ -321,7 +335,8 @@ $catalog = [
                 </div>
             </div>
             <div class="w-50 d-flex flex-column  gap-5">
-                <h1><?= $article["name"] ?> </h1>
+                <h1><?= $article["name"] ?><span
+                        class="badge badge-secondary text-dark"><?= $article["new"] = true ? "New" : null ?></span></h1>
                 <p><?= $article["descritption"] ?></p>
                 <div class="d-flex flex-column align-items-end">
                     <div class="d-flex justify-content-end align-items-start pt-5 gap-5">
@@ -335,13 +350,13 @@ $catalog = [
                                 }
                             endforeach ?>
                         </select>
-                        <?php if($article["stock"]==="En stock"){
+                        <?php if ($article["stock"] === "En stock") {
                             $bgColor = "bg-success";
-                        } elseif($article["stock"] === "Rupture"){
+                        } elseif ($article["stock"] === "Rupture") {
                             $bgColor = "bg-danger";
                         }
                         ?>
-                        <p class="<?=$bgColor?> text-light p-1 rounded-2 " ><?= $article["stock"] ?></p>
+                        <p class="<?= $bgColor ?> text-light p-1 rounded-2 "><?= $article["stock"] ?></p>
                     </div>
                     <p><?= $article["price"] ?> €</p>
                 </div>
