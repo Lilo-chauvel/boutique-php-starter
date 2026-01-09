@@ -275,15 +275,17 @@ $catalog = [
         ],
 ];
 
-foreach ($catalog as $key =>$article) {
-    if ($article["stock"] === 0) {
-        $catalog[$key]["afficheStock"] = "Rupture";
-    } elseif ($article["stock"] < 5) {
-        $catalog[$key]["afficheStock"] = "Derniers";
-    } else {
-        $catalog[$key]["afficheStock"] = "En stock";
-    }
-}
+// foreach ($catalog as $key =>$article) {
+//     if ($article["stock"] === 0) {
+//         $catalog[$key]["afficheStock"] = "Rupture";
+//     } elseif ($article["stock"] < 5) {
+//         $catalog[$key]["afficheStock"] = "Derniers";
+//     } else {
+//         $catalog[$key]["afficheStock"] = "En stock";
+//     }
+// }
+
+
 ?>
 
 <!doctype html>
