@@ -39,7 +39,7 @@ $catalog = [
                     "comment" => "Hyper lourdes mais vraiment, le probleme de commander sur internet",
                 ],
             ],
-            "stock" => "En stock",
+            "stock" => 3,
             "new" => false,
             "discount" => 20
         ],
@@ -71,7 +71,7 @@ $catalog = [
                     "comment" => "Jolie paire mais livraison un peu lente."
                 ],
             ],
-            "stock" => "Rupture",
+            "stock" => 0,
             "new" => true,
             "discount" => 0,
 
@@ -104,7 +104,7 @@ $catalog = [
                     "comment" => "Je revis depuis que je cours avec ces chaussures."
                 ],
             ],
-            "stock" => "En stock",
+            "stock" => 0,
             "new" => true,
             "discount" => 30,
 
@@ -137,7 +137,7 @@ $catalog = [
                     "comment" => "Elles vont avec tout, j'adore."
                 ],
             ],
-            "stock" => "En stock",
+            "stock" => 15,
             "new" => false,
             "discount" => 0,
         ],
@@ -169,7 +169,7 @@ $catalog = [
                     "comment" => "Très bonne paire pour le prix."
                 ],
             ],
-            "stock" => "Rupture",
+            "stock" => 4,
             "new" => true,
             "discount" => 10,
 
@@ -202,7 +202,7 @@ $catalog = [
                     "comment" => "Je les adore, elles me grandissent juste ce qu'il faut."
                 ],
             ],
-            "stock" => "En stock",
+            "stock" => 9,
             "new" => false,
             "discount" => 15,
 
@@ -235,7 +235,7 @@ $catalog = [
                     "comment" => "Couleurs magnifiques, encore mieux en vrai."
                 ],
             ],
-            "stock" => "En stock",
+            "stock" => 10,
             "new" => true,
             "discount" => 0,
 
@@ -268,13 +268,22 @@ $catalog = [
                     "comment" => "Un classique indémodable, je recommande."
                 ],
             ],
-            "stock" => "Rupture",
+            "stock" => 5,
             "new" => false,
             "discount" => 0,
 
         ],
 ];
 
+foreach ($catalog as $key =>$article) {
+    if ($article["stock"] === 0) {
+        $catalog[$key]["afficheStock"] = "Rupture";
+    } elseif ($article["stock"] < 5) {
+        $catalog[$key]["afficheStock"] = "Derniers";
+    } else {
+        $catalog[$key]["afficheStock"] = "En stock";
+    }
+}
 ?>
 
 <!doctype html>
@@ -300,6 +309,13 @@ $catalog = [
             height: 100%;
             object-fit: cover;
             /* ou contain selon ton besoin */
+        }
+
+        .New {
+            background-color: grey;
+            color: white;
+            border-radius: 5px;
+            padding: 5px;
         }
     </style>
 </head>
@@ -335,8 +351,9 @@ $catalog = [
                 </div>
             </div>
             <div class="w-50 d-flex flex-column  gap-5">
-                <h1><?= $article["name"] ?><span
-                        class="badge badge-secondary text-dark"><?= $article["new"] = true ? "New" : null ?></span></h1>
+                <h1><?= $article["name"] ?> <span
+                        class="<?= $article["new"] === true ? "New" : null ?>"><?= $article["new"] === true ? "New" : null ?></span>
+                </h1>
                 <p><?= $article["descritption"] ?></p>
                 <div class="d-flex flex-column align-items-end">
                     <div class="d-flex justify-content-end align-items-start pt-5 gap-5">
@@ -350,15 +367,21 @@ $catalog = [
                                 }
                             endforeach ?>
                         </select>
-                        <?php if ($article["stock"] === "En stock") {
+                        <?php if ($article["afficheStock"] === "En stock") {
                             $bgColor = "bg-success";
-                        } elseif ($article["stock"] === "Rupture") {
+                        } elseif ($article["afficheStock"] === "Rupture") {
                             $bgColor = "bg-danger";
+                        } else {
+                            $bgColor = "bg-warning";
                         }
                         ?>
-                        <p class="<?= $bgColor ?> text-light p-1 rounded-2 "><?= $article["stock"] ?></p>
+                        <p class="<?= $bgColor ?> text-light p-1 rounded-2 "><?= $article["afficheStock"] ?></p>
                     </div>
-                    <p><?= $article["price"] ?> €</p>
+                    <div class="d-flex justify-content-end align-items-start gap-5">
+                        <p><?= $article["discount"] > 0.00 ? "Promo " . $article["discount"] . "%" : null ?></p>
+                        <p><?= $article["discount"] > 0.00 ? round($article["price"] * (1 - ($article["discount"] / 100)), 2) : $article["price"] ?>
+                            €</p>
+                    </div>
                 </div>
             </div>
         </section>

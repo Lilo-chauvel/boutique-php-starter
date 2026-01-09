@@ -1,4 +1,4 @@
-<?php	
+<?php
 $catalog = [
     "AIR FORCE 1" =>
         [
@@ -39,7 +39,9 @@ $catalog = [
                     "comment" => "Hyper lourdes mais vraiment, le probleme de commander sur internet",
                 ],
             ],
-            "stock" => "En stock",
+            "stock" => 3,
+            "new" => false,
+            "discount" => 20
         ],
     "Nike Dunk Low" =>
         [
@@ -69,7 +71,9 @@ $catalog = [
                     "comment" => "Jolie paire mais livraison un peu lente."
                 ],
             ],
-            "stock" => "Rupture",
+            "stock" => 0,
+            "new" => true,
+            "discount" => 0,
 
         ],
     "Adidas Ultraboost 22" =>
@@ -100,7 +104,9 @@ $catalog = [
                     "comment" => "Je revis depuis que je cours avec ces chaussures."
                 ],
             ],
-            "stock" => "En stock",
+            "stock" => 0,
+            "new" => true,
+            "discount" => 30,
 
         ],
     "New Balance 550" =>
@@ -131,7 +137,9 @@ $catalog = [
                     "comment" => "Elles vont avec tout, j'adore."
                 ],
             ],
-            "stock" => "En stock",
+            "stock" => 15,
+            "new" => false,
+            "discount" => 0,
         ],
     "Puma RS-X" =>
         [
@@ -161,7 +169,9 @@ $catalog = [
                     "comment" => "Très bonne paire pour le prix."
                 ],
             ],
-            "stock" => "Rupture",
+            "stock" => 4,
+            "new" => true,
+            "discount" => 10,
 
         ],
     "Converse Chuck Taylor Lift" =>
@@ -192,7 +202,9 @@ $catalog = [
                     "comment" => "Je les adore, elles me grandissent juste ce qu'il faut."
                 ],
             ],
-            "stock" => "En stock",
+            "stock" => 9,
+            "new" => false,
+            "discount" => 15,
 
         ],
     "ASICS GEL-LYTE III" =>
@@ -223,7 +235,9 @@ $catalog = [
                     "comment" => "Couleurs magnifiques, encore mieux en vrai."
                 ],
             ],
-            "stock" => "En stock",
+            "stock" => 10,
+            "new" => true,
+            "discount" => 0,
 
         ],
     "VANS OLD SKOOL PRO" =>
@@ -254,9 +268,9 @@ $catalog = [
                     "comment" => "Un classique indémodable, je recommande."
                 ],
             ],
-            "stock" => "Rupture",
+            "stock" => 5,
+            "new" => false,
+            "discount" => 0,
 
         ],
-
-
 ];
