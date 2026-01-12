@@ -21,4 +21,6 @@ function promo($promoEndDate){
 disponible($stock, $active);
 promo($promoEndDate);
 
+
+
 ?>

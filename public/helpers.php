@@ -149,6 +149,8 @@ function validatePrice(mixed $price): bool
     }
 } //→ true si nombre positif
 
+
+// Fonction de debug :
 function dump_and_die(mixed $var, string $message): void
 {
     $type = get_debug_type($var);
@@ -168,7 +170,10 @@ function Afficheprice(float $price, bool $Isvalide): string
     }
 }
 
-// Fonction de debug :
+function e($string) {
+    return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+}
 
+// Non ça va
 
 ?>
