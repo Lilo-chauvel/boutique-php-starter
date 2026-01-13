@@ -11,14 +11,14 @@ if (session_status() === PHP_SESSION_ACTIVE) {
 
 $reset = e($_GET["reset"]) ?? false;
 
+echo "Vous avez visité cette page " . e($_SESSION["visits"]) . " fois";
 if ((bool) $reset === true) {
     session_destroy();
     header("Location: compteur.php");
-    exit;
+
 }
 
 
-echo "Vous avez visité cette page " . e($_SESSION["visits"]) . " fois";
 ?>
 <!DOCTYPE html>
 <html lang="en">

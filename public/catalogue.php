@@ -352,7 +352,7 @@ $catalog = [
                                 }
                             endforeach ?>
                         </select>
-                        <?= afficheStock($catalog,$keys,$article)?>
+                        <?= afficheStock($catalog,$keys)?>
                     </div>
                     <div class="d-flex justify-content-end align-items-start gap-5">
                     <?= IsInPromo(Afficheprice($article["price"], validatePrice($article["price"])), $article["discount"])?>

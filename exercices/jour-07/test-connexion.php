@@ -6,7 +6,8 @@ try {
         "dev",
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
-    echo "✅ Connexion réussie !";
+    echo "✅ Connexion réussie !<br>";
+    var_dump($pdo);
 } catch (PDOException $e) {
     echo "❌ Erreur : " . $e->getMessage();
 }
