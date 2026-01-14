@@ -12,6 +12,27 @@ try {
     exit;
 }
 
+// Fonction qui pour une colonne donnée affiche soit l'info soit la clé 
+function afficheDonneeTableauHead(string|int $key): void
+{
+    echo "<th scope=\"col\">" . $key . "</th>";
+}
+;
+function afficheDonneeTableau(array $nametableau, string|int $nameColonne, string $name = ""): void
+{
+    echo "<td name=" . $name . ">" . $nametableau[$nameColonne] . "</td>";
+}
+
+// Tableau avec les colonnes que je souhaite afficher
+$tableHeadAffiche = [
+    "name",
+    "description",
+    "price",
+    "stock",
+    "category",
+];
+
+
 // Remplacez 'products' par le nom réel de votre table
 $stmt = $pdo->prepare("SELECT * FROM products");
 $stmt->execute();
@@ -24,20 +45,20 @@ $numberArticle = e($_GET["numberArticle"]) ?? null;
 // Ajouter
 if ($_SERVER["REQUEST_METHOD"] === "POST" && $_POST["action"] !== null) {
     if ($_POST["action"] === "ajouter") {                 //ajouter
-        $stmt = $pdo->prepare("INSERT INTO products (name, price, stock) VALUES (?,?,?,?)");
-        $stmt->execute([$_POST["name"], $_POST["description"], $_POST["price"], $_POST["stock"]]);
+        $stmt = $pdo->prepare("INSERT INTO products (name,description, price, stock,category) VALUES (?,?,?,?,?)");
+        $stmt->execute([$_POST["name"], $_POST["description"], $_POST["price"], $_POST["stock"], $_POST["category"]]);
         header("Location: admin-produits.php");
         exit;
     }
     if ($_POST["action"] === "supprimer") {         //supprimer
         $stmt = $pdo->prepare(query: "DELETE FROM products WHERE id = ?");
-        $stmt->execute([$numberArticle + 1]);
+        $stmt->execute([$numberArticle]);
         header("Location: admin-produits.php");
         exit;
     }
     if ($_POST["action"] === "modifier") {          //modifier
-        $stmt = $pdo->prepare("DELETE FROM products WHERE id = ?");
-        $stmt->execute([$_GET["modifier"]]);
+        $stmt = $pdo->prepare("UPDATE products SET name=?,description=?, price=?, stock=?,category=? WHERE id=?");
+        $stmt->execute([$_POST["name"], $_POST["description"], $_POST["price"], $_POST["stock"], $_POST["category"],$numberArticle]);
         header("Location: admin-produits.php");
         exit;
     }
@@ -60,19 +81,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $_POST["action"] !== null) {
     <table>
         <thead>
             <tr>
-                <th>Modifier</th>
-                <?php foreach ($catalog as $key => $product) {
-                    foreach ($product as $thead => $info) {
-                        if ($key !== 0) {
-                            break;
-                        } elseif ($thead === "id" || $thead === "created_at") {
-                            continue;
-
-                        } ?>
-                        <th scope="col"> <?= $thead ?> </th>
-                        <?php
-                    } ?>
-                <?php } ?>
+                <?php
+                afficheDonneeTableauHead("Modifier");
+                foreach ($tableHeadAffiche as $head) {
+                    afficheDonneeTableauHead($head);
+                }
+                ?>
             </tr>
         </thead>
         <tbody>
@@ -81,16 +95,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $_POST["action"] !== null) {
                 <tr>
                     <td>
                         <form action="" method="GET" style="margin:0;">
-                            <input type="hidden" name="numberArticle" value="<?= $key ?>">
-                            <input type="checkbox" name="selection" onchange="this.form.submit()">
+                            <input type="hidden" name="numberArticle" value="<?= $product["id"] ?>">
+                            <input type="checkbox" name="selection" onchange="this.form.submit()" <?= isset($_GET["numberArticle"]) && $_GET["numberArticle"] == $product["id"] ? "checked" : "" ?>>
                         </form>
                     </td>
-                    <?php foreach ($product as $thead => $info) {
-                        if ($thead === "id" || $thead === "created_at") {
-                            continue;
-                        } ?>
-                        <td> <?= $info ?> </td>
-                    <?php } ?>
+                    <?php
+                    foreach ($tableHeadAffiche as $info) {
+                        afficheDonneeTableau($product, $info, $info);
+                    }
+                    ?>
                 </tr>
                 <?php
             } ?>
@@ -99,19 +112,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $_POST["action"] !== null) {
 
 
     <form action="" method="POST">
-        <?php foreach ($catalog as $key1 => $product) {
-            foreach ($product as $key2 => $info) {
-                if ($key1 !== 0) {
-                    break;
-                } elseif ($key2 === "id" || $key2 === "created_at") {
-                    continue;
-                }
-                $type = gettype($info) !== "integer" ? gettype($info) : "number"; ?>
-                <label for="<?= $key2 ?>"><?= $key2 ?> &nbsp;</label>
-                <input type="<?= $type ?>" name="<?= $key2 ?>" id="<?= $key2 ?>" value="<?= $catalog[$numberArticle][$key2] ?>">
-                <br>
-            <?php }
-        } ?>
+        <table>
+            <tbody>
+                <?php
+                $stmt = $pdo->prepare("SELECT * FROM products WHERE id=?");
+                $stmt->execute([$numberArticle]);
+                $produit = $stmt->fetch(PDO::FETCH_ASSOC);
+                foreach ($tableHeadAffiche as $head) {
+                    ?>
+                    <tr>
+                        <th scope="row"><label for="<?= $head ?>"><?= $head ?></label></th>
+                        <td><input type="text" name="<?= $head ?>" value="<?= $produit[$head] ?>"></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
         <button type="submit" name="action" value="modifier">Modifier</button>
         <button type="submit" name="action" value="supprimer">Supprimer</button>
         <button type="submit" name="action" value="ajouter">Ajouter</button>
