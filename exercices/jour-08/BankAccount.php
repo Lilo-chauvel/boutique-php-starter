@@ -51,5 +51,6 @@ echo "<br>";
 $MyMoney->withdraw(12);
 echo "<br>";
 $MyMoney->getBalance();
+
 ?>
 </pre>

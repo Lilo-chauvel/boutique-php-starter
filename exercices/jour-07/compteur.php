@@ -15,7 +15,6 @@ echo "Vous avez visité cette page " . e($_SESSION["visits"]) . " fois";
 if ((bool) $reset === true) {
     session_destroy();
     header("Location: compteur.php");
-
 }
 
 

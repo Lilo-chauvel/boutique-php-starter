@@ -89,7 +89,4 @@ class User
 
     }
 }
-
-$test = new User(10);
-$test->age=-5
 ?>

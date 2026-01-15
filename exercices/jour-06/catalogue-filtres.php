@@ -21,10 +21,9 @@ $produitsSimplifies = [
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     $resultat = [];
     $recherche = $_GET["recherche"] ?? null;
-    $categorie = $_GET["categorie"]==="0" ? null : $_GET["categorie"];
-    $prixMax = empty($_GET["prixMax"])  ? null : $_GET["prixMax"];
+    $categorie = $_GET["categorie"] === "0" ? null : $_GET["categorie"];
+    $prixMax = empty($_GET["prixMax"]) ? null : $_GET["prixMax"];
     $enStock = isset($_GET["enStock"]) === true ? true : null;
-    ;
     $i = 1;
     foreach ($produitsSimplifies as $key => $article) {
         if (strpos((string) $article["name"], (string) $recherche) !== false || $recherche === null) {
@@ -32,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
                 if ($article["price"] < $prixMax || $prixMax === null) {
                     if ($article["inStock"] === $enStock || $enStock === null) {
                         $resultat[$key] = $article;
-                    }else{
+                    } else {
                         echo "$i stock $enStock <br>";
                     }
                 } else {
@@ -71,12 +70,12 @@ if (empty($resultat)) {
         <input type="text" name="recherche" id="recherche" value="<?= $recherche ?? null ?>"></input><br>
         <label for="categorie">Categorie : </label>
         <select name="categorie" id="categorie">
-            <option value ="0" <?= ($_GET["categorie"] ?? "0") === "0" ? "selected" : "" ?>>- selectionner -</option>
+            <option value="0" <?= ($_GET["categorie"] ?? "0") === "0" ? "selected" : "" ?>>- selectionner -</option>
             <option value="Spring" <?= ($categorie ?? null) === "Spring" ? "selected" : "" ?>>Spring</option>
             <option value="Summer" <?= ($categorie ?? null) === "Summer" ? "selected" : "" ?>>Summer</option>
             <option value="Autumn" <?= ($categorie ?? null) === "Autumn" ? "selected" : "" ?>>Autumn</option>
             <option value="Winter" <?= ($categorie ?? null) === "Winter" ? "selected" : "" ?>>Winter</option>
-        </select><br> 
+        </select><br>
         <label for="prixMax">Prix max : </label>
         <input type="number" name="prixMax" id="prixMax" value="<?= $prixMax ?? null ?>"><br>
         <label for="enStock">En stock : </label>
