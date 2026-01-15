@@ -71,10 +71,11 @@ class CartItem
     }
     /**
      * Add quantity to a product
+     * Chainable
      * @param int $quantityDecrement
      * @return void
      */
-    public function decremente(int $quantityDecrement): void
+    public function decremente(int $quantityDecrement)
     {
         $quantityAfterDecrement = $this->quantity - $quantityDecrement;
         if ($quantityAfterDecrement < 0) {
@@ -82,15 +83,18 @@ class CartItem
         } else {
             $this->quantity = $quantityAfterDecrement;
         }
+        return $this;
     }
     /**
      * Remove quantity to a cart item
+     * Chainable
      * @param mixed $quantityIncremente
      * @return void
      */
     public function incremente($quantityIncremente)
     {
         $this->quantity += $quantityIncremente;
+        return $this;
     }
     /**
      * Get a product
@@ -110,12 +114,14 @@ class CartItem
     }
     /**
      * Update the quantity of a product in a item
+     * Chainable
      * @param int $quantitySet
      * @return void
      */
-    public function setQuantity(int $quantitySet): void
+    public function setQuantity(int $quantitySet)
     {
         $this->quantity = max(0, $quantitySet);
+        return $this;
     }
     /**
      * Get the total price of a item
@@ -144,6 +150,7 @@ class Cart
 
     /**
      * Update a given article
+     * Chainable
      * @param Product $product
      * @param int $quantity
      * @return void
@@ -151,16 +158,19 @@ class Cart
     public function uptdateProduct(Product $product, int $quantity = 1)
     {
         $this->items[$product->getId()]->setQuantity($quantity);
+        return $this;
     }
 
     /**
      * Remove a given product in your cart
+     * Chainable
      * @param Product $product
      * @return void
      */
-    public function removeProduct(Product $product): void
+    public function removeProduct(Product $product)
     {
         unset($this->items[$product->getId()]);
+        return $this;
     }
 
     /**
@@ -197,11 +207,13 @@ class Cart
 
     /**
      * Remove all the product ni your cart
+     * Chainable
      * @return void
      */
-    public function clear(): void
+    public function clear()
     {
         $this->items = [];
+        return $this;
     }
 }
 
@@ -227,6 +239,7 @@ class User
 
     /**
      * Set the User Email
+     * Chainable
      * @param string $email
      * @throws InvalidArgumentException
      * @return void
@@ -236,9 +249,11 @@ class User
         if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
             throw new InvalidArgumentException("L'adresse retourné n'est pas valide");
         }
+        return $this;
     }
     /**
      * Add a adress to the User profil
+     * Chainable
      * @param int $streetNumber
      * @param string $street
      * @param string $town
@@ -255,6 +270,7 @@ class User
     ) {
         $idAdress = (count($this->arrayAdress));
         $this->arrayAdress[$idAdress] = new Adress($streetNumber, $street, $town, $postCode, $country);
+        return $this;
     }
     /**
      * Get the default adress
@@ -280,6 +296,7 @@ class Adress
 
     /**
      * Set the code postal
+     * Chainable
      * @param int $postCode
      * @throws InvalidArgumentException
      * @return void
@@ -289,8 +306,12 @@ class Adress
         if (filter_var($postCode, FILTER_VALIDATE_REGEXP, ["options" => ["regexp" => "/^[0-9]{5}$/"]]) === false) {
             throw new InvalidArgumentException("Le code postal n'est pas valide");
         }
+        return $this;
     }
 
+    /**
+     * Give the adress
+     */
     public function getAdress(): string
     {
         return $this->streetNumber . " " . $this->street . ", " . $this->postCode . " " . $this->town . ", " . $this->country;
@@ -337,23 +358,32 @@ class Order
 
     //     return $this->id;
     // }
-
+    
+    /**
+     * Give the date of a Order
+     */
     public function getDate()
     {
         return $this->date;
     }
 
-
+    /**
+     * Give the id of a Order
+     */
     public function getId()
     {
         return $this->id;
     }
-
+    /**
+     * Calculate the total of a order and return the total
+     */
     public function getTotalOrder()
     {
         return $this->item->getTotalCart();
     }
-
+    /**
+     * Count and return the number of item in the order
+     */
     public function getItemCount()
     {
         return $this->item->count();
