@@ -1,4 +1,4 @@
-<?php 
+<?php
 echo "<div style=\"visibility:collapse\">
     ";
 require_once "class.php";
@@ -22,8 +22,8 @@ foreach ($catalogEx1 as $key => $product) {
 }
 // print_r($tabCartItemEx2[0]);
 $cart1 = new Cart();
-foreach($catalogEx1 as $cartItem){
-    $cart1->addProduct($cartItem,2);
+foreach ($catalogEx1 as $key=>$cartItem) {
+    $cart1->addProduct($cartItem, $key);
 }
 $cart2 = new Cart();
 $lilo = new User("Lilo", "lilo.chauvel@gmail.com");
@@ -42,5 +42,5 @@ $nicoOrder->getId();
 $nicoOrder->getItemCount();
 $nicoOrder->getTotalOrder();
 
-$cart2->removeProduct($catalogEx1[0])
-->addProduct($catalogEx1[0],2);
+$cart1->removeProduct($catalogEx1[0])
+    ->addProduct($catalogEx1[0], 2);

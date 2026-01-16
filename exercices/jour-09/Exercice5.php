@@ -26,8 +26,8 @@ foreach ($catalogEx1 as $key => $product) {
 // print_r($tabCartItemEx2[0]);
 
 $cart1 = new Cart();
-foreach($catalogEx1 as $cartItem){
-    $cart1->addProduct($cartItem,2);
+foreach ($catalogEx1 as $cartItem) {
+    $cart1->addProduct($cartItem, 2);
 }
 
 $cart2 = new Cart();
@@ -48,6 +48,9 @@ echo $myOrder->getItemCount();
 echo "<br>";
 echo $myOrder->getTotalOrder();
 echo " €<br>";
+var_dump(Order::$TabIdOrder);
+echo " <br>";
+echo " <br>";
 
 $nicoOrder = new Order($nico, $cart2);
 echo $nicoOrder->getDate();
@@ -58,3 +61,5 @@ echo $nicoOrder->getItemCount();
 echo "<br>";
 echo $nicoOrder->getTotalOrder();
 echo " €<br>";
+
+var_dump(Order::$TabIdOrder);

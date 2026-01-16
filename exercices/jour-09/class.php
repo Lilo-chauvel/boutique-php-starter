@@ -1,14 +1,22 @@
 <?php
+
 //---- Relation simple : Product et Category ----
+/**
+ * Creat a category
+ */
 class Category
 {
     public function __construct(
+        /**
+         * @var id: It is the ID of the category
+         * @var name: The name of the category
+         */
         private int $id,
         private string $name
     ) {
     }
     /**
-     * Give the name of the category
+     * Give the name of the category 
      * @return string
      */
     public function getName(): string
@@ -75,7 +83,7 @@ class CartItem
      * @param int $quantityDecrement
      * @return void
      */
-    public function decremente(int $quantityDecrement)
+    public function decremente(int $quantityDecrement): static
     {
         $quantityAfterDecrement = $this->quantity - $quantityDecrement;
         if ($quantityAfterDecrement < 0) {
@@ -91,7 +99,7 @@ class CartItem
      * @param mixed $quantityIncremente
      * @return void
      */
-    public function incremente($quantityIncremente)
+    public function incremente($quantityIncremente): static
     {
         $this->quantity += $quantityIncremente;
         return $this;
@@ -118,7 +126,7 @@ class CartItem
      * @param int $quantitySet
      * @return void
      */
-    public function setQuantity(int $quantitySet)
+    public function setQuantity(int $quantitySet): static
     {
         $this->quantity = max(0, $quantitySet);
         return $this;
@@ -155,7 +163,7 @@ class Cart
      * @param int $quantity
      * @return void
      */
-    public function uptdateProduct(Product $product, int $quantity = 1)
+    public function uptdateProduct(Product $product, int $quantity = 1): static
     {
         $this->items[$product->getId()]->setQuantity($quantity);
         return $this;
@@ -167,7 +175,7 @@ class Cart
      * @param Product $product
      * @return void
      */
-    public function removeProduct(Product $product)
+    public function removeProduct(Product $product): static
     {
         unset($this->items[$product->getId()]);
         return $this;
@@ -210,7 +218,7 @@ class Cart
      * Chainable
      * @return void
      */
-    public function clear()
+    public function clear(): static
     {
         $this->items = [];
         return $this;
@@ -244,7 +252,7 @@ class User
      * @throws InvalidArgumentException
      * @return void
      */
-    public function setEmail(string $email)
+    public function setEmail(string $email): static
     {
         if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
             throw new InvalidArgumentException("L'adresse retourné n'est pas valide");
@@ -267,7 +275,7 @@ class User
         string $town,
         int $postCode,
         string $country,
-    ) {
+    ): static {
         $idAdress = (count($this->arrayAdress));
         $this->arrayAdress[$idAdress] = new Adress($streetNumber, $street, $town, $postCode, $country);
         return $this;
@@ -301,7 +309,7 @@ class Adress
      * @throws InvalidArgumentException
      * @return void
      */
-    private function setPostCode(int $postCode)
+    private function setPostCode(int $postCode): static
     {
         if (filter_var($postCode, FILTER_VALIDATE_REGEXP, ["options" => ["regexp" => "/^[0-9]{5}$/"]]) === false) {
             throw new InvalidArgumentException("Le code postal n'est pas valide");
@@ -322,7 +330,8 @@ class Adress
  */
 class Order
 {
-    private static array $TabIdOrder = [];
+    
+    public static array $TabIdOrder = [];
     private int $id;
     private string $date;
     public function __construct(
@@ -338,27 +347,18 @@ class Order
         $this->id = rand(1000, 9999);
         $maxTab = count(self::$TabIdOrder);
         $i = 0;
-        while ($i < ($maxTab-1)) {
+        while ($i < $maxTab) {
             if ($this->id === self::$TabIdOrder[$i]) {
                 $this->id = rand(1000, 9999);
                 $i = 0;
-            }else{
+            } else {
                 $i++;
             }
         }
+        self::$TabIdOrder[] = $this->id;
         return $this->id;
     }
-    // private function creatId()
-    // {
-    //     do {
-    //         $this->id = rand(1000, 9999);
-    //     } while (in_array($this->id, self::$TabIdOrder));
 
-    //     self::$TabIdOrder[] = $this->id;
-
-    //     return $this->id;
-    // }
-    
     /**
      * Give the date of a Order
      */

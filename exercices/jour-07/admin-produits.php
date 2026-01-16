@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $_POST["action"] !== null) {
         exit;
     }
     if ($_POST["action"] === "supprimer") {         //supprimer
-        $stmt = $pdo->prepare(query: "DELETE FROM products WHERE id = ?");
+        $stmt = $pdo->prepare("DELETE FROM products WHERE id = ?");
         $stmt->execute([$numberArticle]);
         header("Location: admin-produits.php");
         exit;
