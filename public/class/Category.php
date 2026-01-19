@@ -10,8 +10,8 @@ class Category
          * @var id: It is the ID of the category
          * @var name: The name of the category
          */
-        private int $id,
-        private string $name
+        protected int $id,
+        protected string $name
     ) {
     }
     /**

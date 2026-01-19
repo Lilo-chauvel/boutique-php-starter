@@ -4,24 +4,12 @@ Autoloader::register();
 /**
  * The Product repository
  */
-class ProductRepository extends Product
+class ProductRepository
 {
 
     public function __construct(
-        protected int $id,
-        protected string $name,
-        protected float $price,
-        protected int $stock,
-        protected string $category,
         protected PDO $pdo
     ) {
-        parent::__construct(
-            $id,
-            $name,
-            $price,
-            $stock,
-            $category,
-        );
     }
     /**
      * Return the product of a given product in the Database

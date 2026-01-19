@@ -1,7 +1,6 @@
 <?php
 require_once("/var/www/boutique/public/class/Autoloader.php");
 Autoloader::register();
-$Tshirt = new Category(1, "Category");
 try {
     $pdo = new PDO(
         "mysql:host=localhost;dbname=boutique;charset=utf8mb4",
@@ -13,14 +12,7 @@ try {
     echo "Erreur : " . $e->getMessage();
     exit;
 }
-$testProduct = new ProductRepository($pdo);
-$addProduct = new Product(14, "Chaussettes", 12.5, 10, "Accessoires");
+$testCat = new CategoryRepository($pdo);
 echo "<pre>";
-print_r($testProduct->findByCategory(1));
-echo "</pre>";
-echo "<pre>";
-print_r($testProduct->findByPriceRange(50,100));
-echo "</pre>";
-echo "<pre>";
-print_r($testProduct->findInStock());
+var_dump($testCat->findWithProducts(1));
 echo "</pre>";
