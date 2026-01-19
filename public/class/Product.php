@@ -5,7 +5,8 @@ class Product
         protected  int $id,
         protected string $name,
         protected float $price,
-        protected  int $stock
+        protected  int $stock,
+        protected  string $category
     ) {
 
     }
@@ -20,7 +21,7 @@ class Product
     }
 
     // /**
-    //  * Get the category of the article
+    //  * Get the name of the article
     //  * @return Category|string
     //  */
     // public function getCategory(): Category
@@ -34,6 +35,23 @@ class Product
     public function getName(): string
     {
         return $this->name;
+    }
+
+    // /**
+    //  * Get the category of the article
+    //  * @return Category|string
+    //  */
+    // public function getCategory(): Category
+    // {
+    //     return $this->category;
+    // }
+    /**
+     * Get the name of the product
+     * @return string
+     */
+    public function getCategory(): string
+    {
+        return $this->category;
     }
 
     /**

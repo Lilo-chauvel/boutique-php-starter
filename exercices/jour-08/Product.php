@@ -1,5 +1,5 @@
 <?php
-class product
+class ProductJ8
 {
     public function __construct(
         public int $id,

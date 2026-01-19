@@ -4,7 +4,7 @@
 /**
  * Creat a category
  */
-class Category
+class CategoryJ9
 {
     public function __construct(
         /**
@@ -25,7 +25,7 @@ class Category
     }
 }
 
-class Product
+class ProductJ9
 {
     public function __construct(
         private int $id,
@@ -330,7 +330,7 @@ class Adress
  */
 class Order
 {
-    
+
     public static array $TabIdOrder = [];
     private int $id;
     private string $date;

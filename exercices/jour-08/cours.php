@@ -1,7 +1,7 @@
 <?php
 
 // ---- Créer une classe ----
-class Product
+class ProductJ8
 {
     // Propriétés (les données)
     public string $name;
@@ -17,12 +17,12 @@ class Product
 
 
 //---- Le constructeur ----
-class Product1
+class ProductJ81
 {
     public string $name;
     public float $price;
     public int $stock;
-    
+
     public function __construct(string $name, float $price, int $stock = 0)
     {
         $this->name = $name;
@@ -32,10 +32,10 @@ class Product1
 }
 
 // Utilisation
-$product = new Product1("T-shirt", 29.99, 50);
+$product = new ProductJ81("T-shirt", 29.99, 50);
 
 //----  Encapsulation : public vs private ----
-class Product2
+class ProductJ82
 {
     private float $price; // Accessible uniquement dans la classe
 
@@ -60,7 +60,7 @@ class Product2
     }
 }
 
-$p = new Product2("T-shirt", 29.99);
+$p = new ProductJ82("T-shirt", 29.99);
 // $p->price = -10;   // ❌ Erreur : private
 $p->setPrice(25);     // ✅ Passe par la validation
 echo $p->getPrice();  // 25

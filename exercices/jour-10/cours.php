@@ -65,7 +65,9 @@ class ProductRepository
             id: (int) $data['id'],
             name: $data['name'],
             price: (float) $data['price'],
-            stock: (int) $data['stock']
+            stock: (int) $data['stock'],
+            category: (string) $data['category']
+
         );
     }
 }

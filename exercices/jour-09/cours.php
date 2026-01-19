@@ -1,7 +1,7 @@
 <?php
 
 //---- Relation simple : Product et Category ----
-class Category
+class CategoryJ9
 {
     public function __construct(
         private int $id,
@@ -15,7 +15,7 @@ class Category
     }
 }
 
-class Product
+class ProductJ9
 {
     public function __construct(
         private int $id,
@@ -44,8 +44,8 @@ class Product
     }
 }
 
-$clothes = new Category(1, "Vêtements");
-$tshirt = new Product(1, "T-shirt", 29.99, $clothes);
+$clothes = new CategoryJ9(1, "Vêtements");
+$tshirt = new ProductJ9(1, "T-shirt", 29.99, $clothes);
 
 
 
