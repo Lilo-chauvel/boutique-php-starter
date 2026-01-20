@@ -1,19 +1,11 @@
 <?php
-use App\Controlleur\ProduitControlleur;
 require_once __DIR__ . '/../vendor/autoload.php';
-// 1. Affiche l'URI (le chemin tapé après le nom de domaine)
-echo "URI demandée : " . $_SERVER['REQUEST_URI'] . "<br>";
-[1, 3];
+require_once __DIR__ . '/../config/database.php';
 
-// 2. Affiche la méthode HTTP (GET pour la lecture, POST pour l'envoi de données)
-echo "Méthode HTTP : " . $_SERVER['REQUEST_METHOD']; 
-[1, 3];
+// Récupérer l'URL demandée
+$uri = $_SERVER['REQUEST_URI'];
+$method = $_SERVER['REQUEST_METHOD'];
 
-$router = new router();
-echo "<br>";
-var_dump($router);
-echo "<br>";
-$router->get("/produits", [ProduitControlleur::class, 'index']);
-echo "<br>";
-$router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
-echo "<br>";
+// Charger les routes et dispatcher
+$router = require __DIR__ . '/../config/routes.php';
+$router->dispatch($uri, $method);

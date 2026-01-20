@@ -1,4 +1,7 @@
 <?php
+
+use App\Controller\HomeController;
+use Config\Database;
 // FRONT CONTROLEUR : INDEX.PHP
 // public/index.php
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -94,7 +97,7 @@ class productController
 
     public function __construct()
     {
-        $pdo = database::getInstance();
+        $pdo = Database::getInstance();
         $this->repository = new productRepository($pdo);
     }
 

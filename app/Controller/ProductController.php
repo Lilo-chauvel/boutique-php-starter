@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
-use App\Class\Database;
-use App\Class\ProductRepository;
+use App\Repository\ProductRepository;
+use Config\Database;
+
 
 class ProductController
 {

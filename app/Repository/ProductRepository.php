@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Class;
+namespace App\Repository;
 
+use App\Class\Product;
 use PDO;
 
 /**
