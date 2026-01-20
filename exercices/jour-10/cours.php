@@ -1,14 +1,14 @@
 <?php
 
 //---- Structure d'un Repository ----
-class ProductRepository
+class productRepository
 {
     public function __construct(private PDO $pdo)
     {
     }
 
     // READ - Un seul
-    public function find(int $id): ?Product
+    public function find(int $id): ?product
     {
         $stmt = $this->pdo->prepare("SELECT * FROM products WHERE id = ?");
         $stmt->execute([$id]);
@@ -25,7 +25,7 @@ class ProductRepository
     }
 
     // CREATE
-    public function save(Product $product): void
+    public function save(product $product): void
     {
         $stmt = $this->pdo->prepare(
             "INSERT INTO products (nom, prix, stock) VALUES (?, ?, ?)"
@@ -38,7 +38,7 @@ class ProductRepository
     }
 
     // UPDATE
-    public function update(Product $product): void
+    public function update(product $product): void
     {
         $stmt = $this->pdo->prepare(
             "UPDATE products SET nom = ?, prix = ?, stock = ? WHERE id = ?"
@@ -50,7 +50,7 @@ class ProductRepository
             $product->getId()
         ]);
     }
-
+    // setPrice
     // DELETE
     public function delete(int $id): void
     {
@@ -59,9 +59,9 @@ class ProductRepository
     }
 
     // Hydratation : tableau → objet
-    private function hydrate(array $data): Product
+    private function hydrate(array $data): product
     {
-        return new Product(
+        return new product(
             id: (int) $data['id'],
             name: $data['name'],
             price: (float) $data['price'],
@@ -77,7 +77,7 @@ class ProductRepository
 
 // Configuration
 $pdo = new PDO("mysql:host=localhost;dbname=boutique", "dev", "dev");
-$productRepo = new ProductRepository($pdo);
+$productRepo = new productRepository($pdo);
 
 // Récupérer tous les produits
 $products = $productRepo->findAll();
@@ -86,8 +86,8 @@ $products = $productRepo->findAll();
 $product = $productRepo->find(42);
 
 // Créer un produit
-$newProduct = new Product(name: "Casquette", price: 19.99, stock: 100);
-$productRepo->save($newProduct);
+$newproduct = new product(id: 20, name: "Casquette", price: 19.99, stock: 100, category: "Accessoires");
+$productRepo->save($newproduct);
 
 // Modifier
 $product->setPrice(24.99);
@@ -102,11 +102,11 @@ $productRepo->delete(42);
 /**
  * Méthodes de recherche personnalisées
  */
-class ProductRepositoryWithRecherche
+class productRepositoryWithRecherche
 {
     // ... méthodes de base ...
 
-    public function findByCategory(int $categoryId): array
+    public function findBycategory(int $categoryId): array
     {
         $stmt = $this->pdo->prepare(
             "SELECT * FROM products WHERE category_id = ?"

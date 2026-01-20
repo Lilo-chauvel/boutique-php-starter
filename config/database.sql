@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS categories (
 -- ============================================
 -- TABLE : products
 -- JOUR 7 : Utiliser pour lister les produits
--- JOUR 10 : CRUD via ProductRepository
+-- JOUR 10 : CRUD via productRepository
 -- ============================================
 CREATE TABLE IF NOT EXISTS products (
     id INT PRIMARY KEY AUTO_INCREMENT,

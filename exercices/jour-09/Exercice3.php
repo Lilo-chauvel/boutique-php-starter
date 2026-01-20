@@ -5,41 +5,41 @@ require_once "class.php";
 echo "
     </div>";
 
-$electronicCategory = new CategoryJ9(1, 'Électronique');
-$clothingCategory = new CategoryJ9(2, 'Vêtements');
-$foodCategory = new CategoryJ9(3, 'Alimentation');
+$electroniccategory = new categoryJ9(1, 'Électronique');
+$clothingcategory = new categoryJ9(2, 'Vêtements');
+$foodcategory = new categoryJ9(3, 'Alimentation');
 
 $catalogEx1 = [
     // Création des produits
-    $product1 = new ProductJ9(1, 'Laptop', 799.99, $electronicCategory),
-    $product2 = new ProductJ9(2, 'T-shirt', 19.99, $clothingCategory),
-    $product3 = new ProductJ9(3, 'Café', 12.50, $foodCategory),
-    $product4 = new ProductJ9(4, 'Smartphone', 599.99, $electronicCategory),
-    $product5 = new ProductJ9(5, 'Jeans', 49.99, $clothingCategory),
+    $product1 = new productJ9(1, 'Laptop', 799.99, $electroniccategory),
+    $product2 = new productJ9(2, 'T-shirt', 19.99, $clothingcategory),
+    $product3 = new productJ9(3, 'Café', 12.50, $foodcategory),
+    $product4 = new productJ9(4, 'Smartphone', 599.99, $electroniccategory),
+    $product5 = new productJ9(5, 'Jeans', 49.99, $clothingcategory),
 ];
 
-$tabCartItemEx2 = [];
+$tabcartItemEx2 = [];
 
 foreach ($catalogEx1 as $key => $product) {
-    $tabCartItemEx2[$key] = new CartItem($product, random_int(1, 10));
+    $tabcartItemEx2[$key] = new cartItem($product, random_int(1, 10));
 }
-// print_r($tabCartItemEx2[0]);
+// print_r($tabcartItemEx2[0]);
 
-$cart1 = new Cart();
-$cart1->addProduct($tabCartItemEx2[0]->getProduct(), $tabCartItemEx2[0]->getQuantity());
+$cart1 = new cart();
+$cart1->addproduct($tabcartItemEx2[0]->getproduct(), $tabcartItemEx2[0]->getQuantity());
 var_dump($cart1);
 echo "<br>";
 
 
-var_dump($cart1->addProduct($catalogEx1[0], 4));
+var_dump($cart1->addproduct($catalogEx1[0], 4));
 echo "<br>";
-var_dump($cart1->removeProduct($catalogEx1[0]));
+var_dump($cart1->removeproduct($catalogEx1[0]));
 echo "<br>";
-var_dump($cart1->addProduct($catalogEx1[1], 4));
+var_dump($cart1->addproduct($catalogEx1[1], 4));
 echo "<br>";
-var_dump($cart1->uptdateProduct($catalogEx1[1], 6));
+var_dump($cart1->uptdateproduct($catalogEx1[1], 6));
 echo "<br>";
-var_dump($cart1->getTotalCart());
+var_dump($cart1->getTotalcart());
 echo "<br>";
 var_dump($cart1->count());
 echo "<br>";

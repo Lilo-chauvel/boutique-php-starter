@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
     <form action="" method="POST">
-        <label for="username">Username : </label>
+        <label for="username">username : </label>
         <input type="text" name="username" id="username"
             value="<?= $error["username"] === null ? e($username) : null; ?>">
         <?= $error["username"] ?></p>
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($valide) {
             ?>
             <h2>Message reçu</h2>
-            <p>Username : <?= $username ?></p>
+            <p>username : <?= $username ?></p>
             <p>Email : <?= $email ?></p>
 
         <?php } ?>

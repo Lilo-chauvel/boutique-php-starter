@@ -12,7 +12,7 @@ function isNew(string $dateAdded): bool
 {
     return strtotime($dateAdded) > strtotime("-30 day");
 }
-function canOrder($stock, $quantity): bool
+function canorder($stock, $quantity): bool
 {
     return $stock >= $quantity;
 }
@@ -32,8 +32,8 @@ echo "<br>";
 var_dump(isNew("14-08-2025"));
 echo "<br>";
 echo "<br>";
-var_dump(canOrder(5, 10));
+var_dump(canorder(5, 10));
 echo "<br>";
-var_dump(canOrder(5, 1));
+var_dump(canorder(5, 1));
 echo "<br>";
 ?>

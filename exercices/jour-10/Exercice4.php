@@ -1,6 +1,6 @@
 <?php
-require_once("/var/www/boutique/public/class/Autoloader.php");
-Autoloader::register();
+require_once("/var/www/boutique/app/class/autoloader.php");
+autoloader::register();
 try {
     $pdo = new PDO(
         "mysql:host=localhost;dbname=boutique;charset=utf8mb4",
@@ -12,7 +12,7 @@ try {
     echo "Erreur : " . $e->getMessage();
     exit;
 }
-$testCat = new CategoryRepository($pdo);
+$testCat = new categoryRepository($pdo);
 echo "<pre>";
-var_dump($testCat->findWithProducts(1));
+var_dump($testCat->findWithproducts(1));
 echo "</pre>";

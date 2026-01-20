@@ -1,5 +1,5 @@
 <?php
-class User
+class user
 {
     public function __construct(
         public string $name,
@@ -17,6 +17,6 @@ class User
     }
 }
 
-$lilo = new User("Lilo", "dede","10-01-2026");
+$lilo = new user("Lilo", "dede", "10-01-2026");
 var_dump($lilo->isnewMember());
 ?>

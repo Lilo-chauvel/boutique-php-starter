@@ -1,22 +1,25 @@
 <?php
-require_once("/var/www/boutique/public/class/Autoloader.php");
-Autoloader::register();
+
+namespace App\Class;
+
+use PDO;
+
 /**
- * The Product repository
+ * The product repository
  */
 class ProductRepository
 {
-
     public function __construct(
         protected PDO $pdo
     ) {
     }
+
     /**
-     * Return the product of a given product in the Database
+     * Return the product of a given product in the database
      * @param int $id
      * @return Product|null
      */
-    public function find(int $id): Product
+    public function find(int $id): ?Product
     {
         $stmt = $this->pdo->prepare("SELECT * FROM products WHERE id = ?");
         $stmt->execute([$id]);
@@ -25,8 +28,8 @@ class ProductRepository
     }
 
     /**
-     * Return all the product
-     * @return void
+     * Return all the products
+     * @return array
      */
     public function findAll(): array
     {
@@ -34,7 +37,12 @@ class ProductRepository
         $stmt->execute();
         return array_map([$this, 'hydrate'], $stmt->fetchAll());
     }
-    // Hydratation : tableau → objet
+
+    /**
+     * Hydrate: convert array to object
+     * @param array $data
+     * @return Product
+     */
     private function hydrate(array $data): Product
     {
         return new Product(
@@ -53,7 +61,7 @@ class ProductRepository
         $price = $product->getPrice();
         $stock = $product->getStock();
         $category = $product->getCategory();
-        $stmt = $this->pdo->prepare("INSERT INTO products (id,name,description, price, stock,category) VALUES (?,?,?,?,?,?)");
+        $stmt = $this->pdo->prepare("INSERT INTO products (id, name, description, price, stock, category) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->execute([$id, $name, $description, $price, $stock, $category]);
         return $this;
     }
@@ -68,7 +76,7 @@ class ProductRepository
      * @param string $category
      * @return void
      */
-    /**    public function updateProduct(int $id, array $tabInput): static
+    /**    public function updateproduct(int $id, array $tabInput): static
      *    {
      *        // Récupère les valeurs actuelles du produit
      *        $tabProduitToUpdate = $this->find($id)->getAllVariableInArray();
@@ -111,12 +119,12 @@ class ProductRepository
         return $this;
     }
 
-    public function findByCategory(int $idCategory)
+    public function findBycategory(int $idcategory)
     {
         $stmt = $this->pdo->prepare("SELECT * FROM products WHERE category_id = ?");
-        $stmt->execute([$idCategory]);
-        $tabByCategory = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $tabByCategory;
+        $stmt->execute([$idcategory]);
+        $tabBycategory = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $tabBycategory;
     }
     public function findInStock()
     {

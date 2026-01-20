@@ -1,9 +1,9 @@
 <?php
-require_once("/var/www/boutique/public/class/Autoloader.php");
-Autoloader::register();
+require_once("/var/www/boutique/app/class/autoloader.php");
+autoloader::register();
 
-$Tshirt = new Category(1, "Category", "Tous les T-shirts");
-$testProduct = new Product(10, "T-shirt", 50, 4,"Vêtements");
+$Tshirt = new category(1, "category");
+$testproduct = new product(10, "T-shirt", 50, 4, "Vêtements");
 try {
     $pdo = new PDO(
         "mysql:host=localhost;dbname=boutique;charset=utf8mb4",
@@ -16,7 +16,7 @@ try {
     exit;
 }
 
-$productRepo = new ProductRepository($testProduct->getId(), $testProduct->getName(), $testProduct->getPrice(),$testProduct->getStock(), $testProduct->getCategory(),$pdo);
+$productRepo = new productRepository($pdo);
 echo "<br>";
 echo "<pre>";
 print_r($productRepo->find(7));

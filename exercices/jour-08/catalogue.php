@@ -1,5 +1,5 @@
 <?php
-require("Product.php");
+require("product.php");
 
 $catalog = [
     new product(1, "Air max", "Jolie paire pour adolescent", 150.00, 4, "Chaussures"),
@@ -21,5 +21,5 @@ foreach ($catalog as $keys => $product) {
 
 echo "Il y a " . $totalStock . " produits en stock";
 echo "<br>";
-echo "La valeur total du catalogue est de " . $valeurCatalogue."€";
+echo "La valeur total du catalogue est de " . $valeurCatalogue . "€";
 ?>

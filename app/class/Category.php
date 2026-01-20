@@ -1,25 +1,33 @@
-<?php	
-//---- Relation simple : Product et Category ----
+<?php
+
+namespace App\Class;
+
 /**
- * Creat a category
+ * Category class
  */
 class Category
 {
     public function __construct(
-        /**
-         * @var id: It is the ID of the category
-         * @var name: The name of the category
-         */
         protected int $id,
         protected string $name
     ) {
     }
+
     /**
-     * Give the name of the category 
+     * Get the name of the category
      * @return string
      */
     public function getName(): string
     {
         return $this->name;
+    }
+
+    /**
+     * Get the ID of the category
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
     }
 }

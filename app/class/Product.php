@@ -1,14 +1,16 @@
 <?php
+
+namespace App\Class;
+
 class Product
 {
     public function __construct(
-        protected  int $id,
+        protected int $id,
         protected string $name,
         protected float $price,
-        protected  int $stock,
-        protected  string $category
+        protected int $stock,
+        protected string $category
     ) {
-
     }
 
     /**
@@ -22,9 +24,9 @@ class Product
 
     // /**
     //  * Get the name of the article
-    //  * @return Category|string
+    //  * @return category|string
     //  */
-    // public function getCategory(): Category
+    // public function getcategory(): category
     // {
     //     return $this->category;
     // }
@@ -39,14 +41,14 @@ class Product
 
     // /**
     //  * Get the category of the article
-    //  * @return Category|string
+    //  * @return category|string
     //  */
-    // public function getCategory(): Category
+    // public function getcategory(): category
     // {
     //     return $this->category;
     // }
     /**
-     * Get the name of the product
+     * Get the category of the product
      * @return string
      */
     public function getCategory(): string
@@ -73,15 +75,18 @@ class Product
     }
 
     /**
-     * Return a array with all the variable of the product
-     * @return void
+     * Return an array with all the variables of the product
+     * @return array
      */
-    public function getAllVariableInArray(): array{
+    public function getAllVariableInArray(): array
+    {
         $array = [];
-        $array[]=$this->getId()??null;
-        $array[]=$this->getName()??null;
-        $array[]=$this->getPrice()??null;
-        $array[]=$this->getStock()??null;
+        $array[] = $this->getId() ?? null;
+        $array[] = $this->getName() ?? null;
+        $array[] = $this->getPrice() ?? null;
+        $array[] = $this->getStock() ?? null;
         return $array;
     }
+
+
 }

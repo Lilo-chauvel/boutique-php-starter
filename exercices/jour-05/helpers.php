@@ -61,4 +61,3 @@ function canOrder($stock, $quantity): bool
 {
     return $stock >= $quantity;
 }
-?>

@@ -1,4 +1,7 @@
 <?php
+
+namespace App\Class;
+
 class CartItem
 {
     public function __construct(
@@ -6,63 +9,68 @@ class CartItem
         private int $quantity = 1
     ) {
     }
+
     /**
-     * Add quantity to a product
+     * Decrement quantity
      * Chainable
      * @param int $quantityDecrement
-     * @return void
+     * @return self
      */
-    public function decremente(int $quantityDecrement): object
+    public function decrement(int $quantityDecrement): self
     {
         $quantityAfterDecrement = $this->quantity - $quantityDecrement;
         if ($quantityAfterDecrement < 0) {
-            echo "Votre essayez d'enlever plus de produit qu'il y en a";
-        } else {
-            $this->quantity = $quantityAfterDecrement;
+            throw new \InvalidArgumentException("Cannot decrement below zero");
         }
+        $this->quantity = $quantityAfterDecrement;
         return $this;
     }
+
     /**
-     * Remove quantity to a cart item
+     * Increment quantity
      * Chainable
-     * @param mixed $quantityIncremente
-     * @return void
+     * @param int $quantityIncrement
+     * @return self
      */
-    public function incremente($quantityIncremente): object
+    public function increment(int $quantityIncrement): self
     {
-        $this->quantity += $quantityIncremente;
+        $this->quantity += $quantityIncrement;
         return $this;
     }
+
     /**
-     * Get a product
+     * Get the product
      * @return Product
      */
     public function getProduct(): Product
     {
         return $this->product;
     }
+
     /**
-     * Get the quantity of a product in a item
+     * Get the quantity
      * @return int
      */
     public function getQuantity(): int
     {
         return $this->quantity;
     }
+
     /**
-     * Update the quantity of a product in a item
+     * Set the quantity
      * Chainable
      * @param int $quantitySet
-     * @return void
+     * @return self
      */
-    public function setQuantity(int $quantitySet): object
+    public function setQuantity(int $quantitySet): self
     {
         $this->quantity = max(0, $quantitySet);
         return $this;
     }
+
     /**
-     * Get the total price of a item
-     * @return float|int
+     * Get the total price of this item
+     * @return float
      */
     public function getTotalItem(): float
     {

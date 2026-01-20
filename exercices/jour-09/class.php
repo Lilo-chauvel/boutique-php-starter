@@ -1,10 +1,10 @@
 <?php
 
-//---- Relation simple : Product et Category ----
+//---- Relation simple : product et category ----
 /**
  * Creat a category
  */
-class CategoryJ9
+class categoryJ9
 {
     public function __construct(
         /**
@@ -25,20 +25,20 @@ class CategoryJ9
     }
 }
 
-class ProductJ9
+class productJ9
 {
     public function __construct(
         private int $id,
         private string $name,
         private float $price,
-        private Category $category // Relation !
+        private category $category // Relation !
     ) {
     }
     /**
      * Get the category of the article
-     * @return Category|string
+     * @return category|string
      */
-    public function getCategory(): Category
+    public function getcategory(): category
     {
         return $this->category;
     }
@@ -68,12 +68,12 @@ class ProductJ9
     }
 }
 
-//---- Composition : Cart et CartItem --    --
+//---- Composition : cart et cartItem --    --
 
-class CartItem
+class cartItem
 {
     public function __construct(
-        private Product $product,
+        private product $product,
         private int $quantity = 1
     ) {
     }
@@ -106,9 +106,9 @@ class CartItem
     }
     /**
      * Get a product
-     * @return Product
+     * @return product
      */
-    public function getProduct(): Product
+    public function getproduct(): product
     {
         return $this->product;
     }
@@ -141,29 +141,29 @@ class CartItem
     }
 }
 
-class Cart
+class cart
 {
 
     private array $items = [];
     /**
      * Add a quantity to a existing article
-     * @param Product $product
+     * @param product $product
      * @param int $quantity
      * @return void
      */
-    public function addProduct(Product $product, int $quantity = 1): void
+    public function addproduct(product $product, int $quantity = 1): void
     {
-        $this->items[$product->getId()] = new CartItem($product, $quantity);
+        $this->items[$product->getId()] = new cartItem($product, $quantity);
     }
 
     /**
      * Update a given article
      * Chainable
-     * @param Product $product
+     * @param product $product
      * @param int $quantity
      * @return void
      */
-    public function uptdateProduct(Product $product, int $quantity = 1): static
+    public function uptdateproduct(product $product, int $quantity = 1): static
     {
         $this->items[$product->getId()]->setQuantity($quantity);
         return $this;
@@ -172,10 +172,10 @@ class Cart
     /**
      * Remove a given product in your cart
      * Chainable
-     * @param Product $product
+     * @param product $product
      * @return void
      */
-    public function removeProduct(Product $product): static
+    public function removeproduct(product $product): static
     {
         unset($this->items[$product->getId()]);
         return $this;
@@ -194,7 +194,7 @@ class Cart
      * Get the total of the catalog
      * @return float
      */
-    public function getTotalCart(): float
+    public function getTotalcart(): float
     {
         $total = 0;
         foreach ($this->items as $item) {
@@ -225,7 +225,7 @@ class Cart
     }
 }
 
-class User
+class user
 {
     public array $arrayAdress = [];
     private int $registrationDate;
@@ -237,7 +237,7 @@ class User
         $this->registrationDate = strtotime("now");
     }
     /**
-     * Say if the User is a new member or not (+30j)
+     * Say if the user is a new member or not (+30j)
      * @return bool
      */
     private function isnewMember(): bool
@@ -246,7 +246,7 @@ class User
     }
 
     /**
-     * Set the User Email
+     * Set the user Email
      * Chainable
      * @param string $email
      * @throws InvalidArgumentException
@@ -260,7 +260,7 @@ class User
         return $this;
     }
     /**
-     * Add a adress to the User profil
+     * Add a adress to the user profil
      * Chainable
      * @param int $streetNumber
      * @param string $street
@@ -277,7 +277,7 @@ class User
         string $country,
     ): static {
         $idAdress = (count($this->arrayAdress));
-        $this->arrayAdress[$idAdress] = new Adress($streetNumber, $street, $town, $postCode, $country);
+        $this->arrayAdress[$idAdress] = adress($streetNumber, $street, $town, $postCode, $country);
         return $this;
     }
     /**
@@ -326,17 +326,17 @@ class Adress
     }
 }
 /**
- * Order is create after a cart validation and he is validate when the paid is done
+ * order is create after a cart validation and he is validate when the paid is done
  */
-class Order
+class order
 {
 
-    public static array $TabIdOrder = [];
+    public static array $TabIdorder = [];
     private int $id;
     private string $date;
     public function __construct(
-        private User $user,
-        private Cart $item,
+        private user $user,
+        private cart $item,
         private bool $statut = false,
     ) {
         $this->date = date("d-m-Y");
@@ -345,22 +345,22 @@ class Order
     private function creatId()
     {
         $this->id = rand(1000, 9999);
-        $maxTab = count(self::$TabIdOrder);
+        $maxTab = count(self::$TabIdorder);
         $i = 0;
         while ($i < $maxTab) {
-            if ($this->id === self::$TabIdOrder[$i]) {
+            if ($this->id === self::$TabIdorder[$i]) {
                 $this->id = rand(1000, 9999);
                 $i = 0;
             } else {
                 $i++;
             }
         }
-        self::$TabIdOrder[] = $this->id;
+        self::$TabIdorder[] = $this->id;
         return $this->id;
     }
 
     /**
-     * Give the date of a Order
+     * Give the date of a order
      */
     public function getDate()
     {
@@ -368,7 +368,7 @@ class Order
     }
 
     /**
-     * Give the id of a Order
+     * Give the id of a order
      */
     public function getId()
     {
@@ -377,9 +377,9 @@ class Order
     /**
      * Calculate the total of a order and return the total
      */
-    public function getTotalOrder()
+    public function getTotalorder()
     {
-        return $this->item->getTotalCart();
+        return $this->item->getTotalcart();
     }
     /**
      * Count and return the number of item in the order

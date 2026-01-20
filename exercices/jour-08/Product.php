@@ -1,5 +1,5 @@
 <?php
-class ProductJ8
+class productJ8
 {
     public function __construct(
         public int $id,
@@ -23,7 +23,7 @@ class ProductJ8
             return false;
         }
     }
-    public function reduceStock(int $quantity):void
+    public function reduceStock(int $quantity): void
     {
         $stockAfterReduce = $this->stock - $quantity;
         if ($stockAfterReduce < 0) {

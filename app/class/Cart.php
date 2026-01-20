@@ -1,10 +1,13 @@
 <?php
+
+namespace App\Class;
+
 class Cart
 {
-
     private array $items = [];
+
     /**
-     * Add a quantity to a existing article
+     * Add a product to the cart
      * @param Product $product
      * @param int $quantity
      * @return void
@@ -15,32 +18,34 @@ class Cart
     }
 
     /**
-     * Update a given article
+     * Update a product quantity in cart
      * Chainable
      * @param Product $product
      * @param int $quantity
-     * @return void
+     * @return self
      */
-    public function uptdateProduct(Product $product, int $quantity = 1):object
+    public function updateProduct(Product $product, int $quantity = 1): self
     {
-        $this->items[$product->getId()]->setQuantity($quantity);
+        if (isset($this->items[$product->getId()])) {
+            $this->items[$product->getId()]->setQuantity($quantity);
+        }
         return $this;
     }
 
     /**
-     * Remove a given product in your cart
+     * Remove a product from the cart
      * Chainable
      * @param Product $product
-     * @return void
+     * @return self
      */
-    public function removeProduct(Product $product): object
+    public function removeProduct(Product $product): self
     {
         unset($this->items[$product->getId()]);
         return $this;
     }
 
     /**
-     * Get the array Items 
+     * Get all items in the cart
      * @return array
      */
     public function getItems(): array
@@ -49,7 +54,7 @@ class Cart
     }
 
     /**
-     * Get the total of the catalog
+     * Get the total price of the cart
      * @return float
      */
     public function getTotalCart(): float
@@ -61,9 +66,8 @@ class Cart
         return $total;
     }
 
-
     /**
-     * Count the number of product in your cart
+     * Count the number of products in the cart
      * @return int
      */
     public function count(): int
@@ -72,11 +76,11 @@ class Cart
     }
 
     /**
-     * Remove all the product ni your cart
+     * Clear the cart
      * Chainable
-     * @return void
+     * @return self
      */
-    public function clear(): object
+    public function clear(): self
     {
         $this->items = [];
         return $this;

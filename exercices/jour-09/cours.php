@@ -1,7 +1,7 @@
 <?php
 
-//---- Relation simple : Product et Category ----
-class CategoryJ9
+//---- Relation simple : product et category ----
+class categoryJ9
 {
     public function __construct(
         private int $id,
@@ -15,17 +15,17 @@ class CategoryJ9
     }
 }
 
-class ProductJ9
+class productJ9
 {
     public function __construct(
         private int $id,
         private string $name,
         private float $price,
-        private Category $category // Relation !
+        private category $category // Relation !
     ) {
     }
 
-    public function getCategory(): Category
+    public function getcategory(): category
     {
         return $this->category;
     }
@@ -44,18 +44,18 @@ class ProductJ9
     }
 }
 
-$clothes = new CategoryJ9(1, "Vêtements");
-$tshirt = new ProductJ9(1, "T-shirt", 29.99, $clothes);
+$clothes = new categoryJ9(1, "Vêtements");
+$tshirt = new productJ9(1, "T-shirt", 29.99, $clothes);
 
 
 
 
-//---- Composition : Cart et CartItem --    --
+//---- Composition : cart et cartItem --    --
 
-class CartItem
+class cartItem
 {
     public function __construct(
-        private Product $product,
+        private product $product,
         private int $quantity = 1
     ) {
     }
@@ -74,7 +74,7 @@ class CartItem
         $this->quantity += $quantityIncremente;
     }
 
-    public function getProduct(): Product
+    public function getproduct(): product
     {
         return $this->product;
     }
@@ -95,12 +95,12 @@ class CartItem
     }
 }
 
-class Cart
+class cart
 {
 
     private array $items = [];
 
-    public function addProduct(Product $product, int $quantity = 1): void
+    public function addproduct(product $product, int $quantity = 1): void
     {
         $id = $product->getId();
 
@@ -110,14 +110,14 @@ class Cart
             $this->items[$id]->setQuantity($currentQuantity + $quantity);
         } else {
             // Nouveau produit
-            $this->items[$id] = new CartItem($product, $quantity);
+            $this->items[$id] = new cartItem($product, $quantity);
         }
     }
     // public function add(){
     //     $items[];
     // }
 
-    public function removeProduct(int $productId): void
+    public function removeproduct(int $productId): void
     {
         unset($this->items[$productId]);
     }
