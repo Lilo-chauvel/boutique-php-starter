@@ -8,21 +8,21 @@ namespace App\Class;
 class Order
 {
     public static array $ordersIds = [];
+
     private int $id;
+
     private string $date;
 
     public function __construct(
-        private User $user,
         private Cart $cart,
         private bool $status = false
     ) {
-        $this->date = date("d-m-Y");
+        $this->date = date('d-m-Y');
         $this->createId();
     }
 
     /**
      * Generate unique order ID
-     * @return int
      */
     private function createId(): int
     {
@@ -31,12 +31,12 @@ class Order
             $this->id = rand(1000, 9999);
         }
         self::$ordersIds[] = $this->id;
+
         return $this->id;
     }
 
     /**
      * Get the order date
-     * @return string
      */
     public function getDate(): string
     {
@@ -45,7 +45,6 @@ class Order
 
     /**
      * Get the order ID
-     * @return int
      */
     public function getId(): int
     {
@@ -54,7 +53,6 @@ class Order
 
     /**
      * Get the total of the order
-     * @return float
      */
     public function getTotal(): float
     {
@@ -63,7 +61,6 @@ class Order
 
     /**
      * Count the number of items in the order
-     * @return int
      */
     public function getItemCount(): int
     {
@@ -72,7 +69,6 @@ class Order
 
     /**
      * Get the order status
-     * @return bool
      */
     public function getStatus(): bool
     {
@@ -81,12 +77,11 @@ class Order
 
     /**
      * Set the order status
-     * @param bool $status
-     * @return self
      */
     public function setStatus(bool $status): self
     {
         $this->status = $status;
+
         return $this;
     }
 }

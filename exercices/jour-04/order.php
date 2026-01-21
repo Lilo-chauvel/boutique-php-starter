@@ -1,49 +1,45 @@
 <?php
-$status = "validated";
-$standby = "standby";
-$shipped = "shipped";
+$status = 'validated';
+$standby = 'standby';
+$shipped = 'shipped';
 function clas($color)
 {
     switch ($color) {
-        case "standby":
-            echo "class=\"jaune\"";
+        case 'standby':
+            echo 'class="jaune"';
             break;
-        case "validated":
-            echo "class=\"vert\"";
+        case 'validated':
+            echo 'class="vert"';
             break;
-        case "shipped":
-            echo "class=\"bleu\"";
+        case 'shipped':
+            echo 'class="bleu"';
             break;
-        case "delivered":
-            echo "class=\"rose\"";
+        case 'delivered':
+            echo 'class="rose"';
             break;
-        case "canceled":
-            echo "class=\"rouge\"";
+        case 'canceled':
+            echo 'class="rouge"';
             break;
     }
 }
-;
+
 function matchClas($color)
 {
     match ($color) {
-        "standby" => $color = "class=\"jaune\"",
+        'standby' => $color = 'class="jaune"',
 
-        "validated" =>
-        $color = "class=\"vert\"",
+        'validated' => $color = 'class="vert"',
 
-        "shipped" =>
-        $color = "class=\"bleu\"",
+        'shipped' => $color = 'class="bleu"',
 
-        "delivered" =>
-        $color = "class=\"rose\"",
+        'delivered' => $color = 'class="rose"',
 
-        "canceled" =>
-        $color = "class=\"rouge\"",
+        'canceled' => $color = 'class="rouge"',
 
     };
     echo $color;
 }
-;
+
 ?>
 
 <!DOCTYPE html>

@@ -1,4 +1,5 @@
 <?php
+
 class productJ8
 {
     public function __construct(
@@ -8,13 +9,15 @@ class productJ8
         public float $price,
         public int $stock,
         public string $category,
-    ) {
-    }
+    ) {}
+
     public function getPriceIncludingTax(float $vat = 20)
     {
         $priceWithTax = $this->price * (1 + ($vat / 100));
+
         return $priceWithTax;
     }
+
     public function isInStock(): bool
     {
         if ($this->stock > 0) {
@@ -23,6 +26,7 @@ class productJ8
             return false;
         }
     }
+
     public function reduceStock(int $quantity): void
     {
         $stockAfterReduce = $this->stock - $quantity;
@@ -32,24 +36,28 @@ class productJ8
             $this->stock = $stockAfterReduce;
         }
     }
+
     public function checkDiscount(float|int $percentage): bool
     {
         return $percentage >= 0;
     }
+
     public function applyDiscount(float $percentage): float|bool
     {
         $priceWithReduce = $this->price * (1 - ($percentage / 100));
         if ($this->checkDiscount($percentage)) {
-            echo "Votre montant remisé est de " . $priceWithReduce;
+            echo 'Votre montant remisé est de '.$priceWithReduce;
+
             return $priceWithReduce;
         } else {
             echo "votre remise n'est pas valable";
+
             return $priceWithReduce = false;
         }
     }
 }
 
-$voiture = new product(4, "clio2", "My previous car", 2000, 2, "Vehicle");
+$voiture = new product(4, 'clio2', 'My previous car', 2000, 2, 'Vehicle');
 // echo "<br>";
 // echo $voiture->getPriceIncludingTax();
 // echo "<br>";

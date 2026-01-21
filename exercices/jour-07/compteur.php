@@ -1,22 +1,20 @@
 <?php
 session_start();
-require("/var/www/boutique/public/helpers.php");
+require '/var/www/boutique/public/helpers.php';
 
 if (session_status() === PHP_SESSION_ACTIVE) {
-    $_SESSION["visits"]++;
+    $_SESSION['visits']++;
 } else {
-    $_SESSION["visits"] = 1;
+    $_SESSION['visits'] = 1;
 }
 
+$reset = e($_GET['reset']) ?? false;
 
-$reset = e($_GET["reset"]) ?? false;
-
-echo "Vous avez visité cette page " . e($_SESSION["visits"]) . " fois";
+echo 'Vous avez visité cette page '.e($_SESSION['visits']).' fois';
 if ((bool) $reset === true) {
     session_destroy();
-    header("Location: compteur.php");
+    header('Location: compteur.php');
 }
-
 
 ?>
 <!DOCTYPE html>

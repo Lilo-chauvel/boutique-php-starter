@@ -1,9 +1,10 @@
 <?php
-echo "<div style=\"visibility:collapse\">
-    ";
-require_once "class.php";
-echo "
-    </div>";
+
+echo '<div style="visibility:collapse">
+    ';
+require_once 'class.php';
+echo '
+    </div>';
 
 $electroniccategory = new categoryJ9(1, 'Électronique');
 $clothingcategory = new categoryJ9(2, 'Vêtements');
@@ -25,25 +26,24 @@ foreach ($catalogEx1 as $key => $product) {
 }
 // print_r($tabcartItemEx2[0]);
 
-$cart1 = new cart();
+$cart1 = new cart;
 $cart1->addproduct($tabcartItemEx2[0]->getproduct(), $tabcartItemEx2[0]->getQuantity());
 var_dump($cart1);
-echo "<br>";
-
+echo '<br>';
 
 var_dump($cart1->addproduct($catalogEx1[0], 4));
-echo "<br>";
+echo '<br>';
 var_dump($cart1->removeproduct($catalogEx1[0]));
-echo "<br>";
+echo '<br>';
 var_dump($cart1->addproduct($catalogEx1[1], 4));
-echo "<br>";
+echo '<br>';
 var_dump($cart1->uptdateproduct($catalogEx1[1], 6));
-echo "<br>";
+echo '<br>';
 var_dump($cart1->getTotalcart());
-echo "<br>";
+echo '<br>';
 var_dump($cart1->count());
-echo "<br>";
+echo '<br>';
 var_dump($cart1->clear());
-echo "<br>";
+echo '<br>';
 var_dump($cart1->getItems());
-echo "<br>";
+echo '<br>';

@@ -1,8 +1,8 @@
 <?php
 
-function formatPrice(float $amount, $currency = "€", $decimals = 2)
+function formatPrice(float $amount, $currency = '€', $decimals = 2)
 {
-    return number_format(round($amount, $decimals), $decimals) . $currency;
+    return number_format(round($amount, $decimals), $decimals).$currency;
 }
 
 function displayBadge($text, $color)
@@ -12,16 +12,16 @@ function displayBadge($text, $color)
 
 function displayPrice($price, $discount = 0)
 {
-    return "<span" . ($discount > 0 ? ' style="text-decoration:line-through"' : null) . ">$price</span>";
+    return '<span'.($discount > 0 ? ' style="text-decoration:line-through"' : null).">$price</span>";
 }
 
 function displayStock($quantity)
 {
-    $style = "";
+    $style = '';
     match (true) {
-        $quantity <= 0 => $style = "style = \"background : red \"",
-        $quantity < 5 => $style = "style = \"background : orange \"",
-        $quantity > 5 => $style = "style = \"background : green \"",
+        $quantity <= 0 => $style = 'style = "background : red "',
+        $quantity < 5 => $style = 'style = "background : orange "',
+        $quantity > 5 => $style = 'style = "background : green "',
     };
 
     return "<span $style>$quantity</span>";
@@ -54,7 +54,7 @@ function isOnSale($discount): bool
 
 function isNew(string $dateAdded): bool
 {
-    return strtotime($dateAdded) > strtotime("-30 day");
+    return strtotime($dateAdded) > strtotime('-30 day');
 }
 
 function canOrder($stock, $quantity): bool

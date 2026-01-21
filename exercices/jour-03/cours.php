@@ -1,21 +1,21 @@
 <?php
-$fruits = ["Pomme", "Banane", "Orange"];
+$fruits = ['Pomme', 'Banane', 'Orange'];
 
 foreach ($fruits as $fruit) {
-    echo $fruit . "<br>";
+    echo $fruit.'<br>';
 }
 // Pomme
 // Banane
 // Orange
 
 $products = [
-    ["nom" => "T-shirt", "prix" => 29.99],
-    ["nom" => "Jean", "prix" => 79.99],
-    ["nom" => "Casquette", "prix" => 19.99]
+    ['nom' => 'T-shirt', 'prix' => 29.99],
+    ['nom' => 'Jean', 'prix' => 79.99],
+    ['nom' => 'Casquette', 'prix' => 19.99],
 ];
 
 foreach ($products as $product) {
-    echo $product["nom"] . " : " . $product["prix"] . "€<br>";
+    echo $product['nom'].' : '.$product['prix'].'€<br>';
 }
 
 for ($i = 0; $i < 5; $i++) {
@@ -59,13 +59,13 @@ foreach ($numbers as $n) {
 
 <body>
 
-    <?php foreach ($products as $product): ?>
+    <?php foreach ($products as $product) { ?>
         <div class="produit">
-            <h2><?= $product["nom"] ?></h2>
-            <p><?= $product["prix"] ?> €</p>
+            <h2><?= $product['nom'] ?></h2>
+            <p><?= $product['prix'] ?> €</p>
         </div>
 
-    <?php endforeach; ?>
+    <?php } ?>
 
 
     <ul>

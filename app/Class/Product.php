@@ -10,11 +10,11 @@ class Product
         protected float $price,
         protected int $stock,
         protected string $category
-    ) {
-    }
+    ) {}
 
     /**
      * Get the id of the product
+     *
      * @return int
      */
     public function getId()
@@ -32,7 +32,6 @@ class Product
     // }
     /**
      * Get the name of the product
-     * @return string
      */
     public function getName(): string
     {
@@ -49,7 +48,6 @@ class Product
     // }
     /**
      * Get the category of the product
-     * @return string
      */
     public function getCategory(): string
     {
@@ -58,6 +56,7 @@ class Product
 
     /**
      * Get the price of the product
+     *
      * @return float
      */
     public function getPrice()
@@ -67,6 +66,7 @@ class Product
 
     /**
      * Get the stock of the product
+     *
      * @return int
      */
     public function getStock()
@@ -76,17 +76,9 @@ class Product
 
     /**
      * Return an array with all the variables of the product
-     * @return array
      */
     public function getAllVariableInArray(): array
     {
-        $array = [];
-        $array[] = $this->getId() ?? null;
-        $array[] = $this->getName() ?? null;
-        $array[] = $this->getPrice() ?? null;
-        $array[] = $this->getStock() ?? null;
-        return $array;
+        return [$this->getId(), $this->getName(), $this->getPrice(), $this->getStock()];
     }
-
-
 }

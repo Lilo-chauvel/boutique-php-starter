@@ -10,12 +10,10 @@ class Category
     public function __construct(
         protected int $id,
         protected string $name
-    ) {
-    }
+    ) {}
 
     /**
      * Get the name of the category
-     * @return string
      */
     public function getName(): string
     {
@@ -24,7 +22,6 @@ class Category
 
     /**
      * Get the ID of the category
-     * @return int
      */
     public function getId(): int
     {

@@ -1,6 +1,6 @@
 <?php
 
-require_once "class.php";
+require_once 'class.php';
 
 // Création des catégories
 $electroniccategory = new categoryJ9(1, 'Électronique');
@@ -16,9 +16,8 @@ $catalogEx1 = [
     $product5 = new productJ9(5, 'Jeans', 49.99, $clothingcategory),
 ];
 
-
 foreach ($catalogEx1 as $key => $product) {
-    echo $product->getName() . " - ";
+    echo $product->getName().' - ';
     echo $product->getcategory()->getName();
-    echo "<br>";
+    echo '<br>';
 }

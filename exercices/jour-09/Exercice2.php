@@ -1,5 +1,6 @@
 <?php
-require_once "class.php";
+
+require_once 'class.php';
 
 // Création des catégories
 $electroniccategory = new categoryJ9(1, 'Électronique');
@@ -23,19 +24,19 @@ foreach ($catalogEx1 as $key => $product) {
 
 foreach ($tabcartItemEx2 as $cartItem) {
     echo $cartItem->getproduct()->getName();
-    echo "<br>";
-    echo "Total : " . $cartItem->getTotal() . " €";
-    echo "<br>";
-    echo "Decremente : " . $cartItem->decremente(5) . "5";
-    echo "<br>";
-    echo "Increment : " . $cartItem->incremente(1) . "1";
-    echo "<br>";
-    echo "Decremente : " . $cartItem->decremente(5) . "5";
-    echo "<br>";
-    echo "Total : " . $cartItem->getTotal() . " €";
-    echo "<br>";
-    echo "<p>------------------------------</p>";
-    echo "<br>";
+    echo '<br>';
+    echo 'Total : '.$cartItem->getTotal().' €';
+    echo '<br>';
+    echo 'Decremente : '.$cartItem->decremente(5).'5';
+    echo '<br>';
+    echo 'Increment : '.$cartItem->incremente(1).'1';
+    echo '<br>';
+    echo 'Decremente : '.$cartItem->decremente(5).'5';
+    echo '<br>';
+    echo 'Total : '.$cartItem->getTotal().' €';
+    echo '<br>';
+    echo '<p>------------------------------</p>';
+    echo '<br>';
 }
 
 print_r($tabcartItemEx2[0]);

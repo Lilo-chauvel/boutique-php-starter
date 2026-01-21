@@ -1,15 +1,15 @@
 <?php
 session_start();
-require("/var/www/boutique/public/helpers.php");
+require '/var/www/boutique/public/helpers.php';
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (e($_POST["user"]) === e("1") && e($_POST["MDP"]) === e("2")) {
-        $_SESSION["user"] = e($_POST["user"]);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (e($_POST['user']) === e('1') && e($_POST['MDP']) === e('2')) {
+        $_SESSION['user'] = e($_POST['user']);
         // var_dump($_SESSION["user"]);
-        header("Location: dashboard.php");
+        header('Location: dashboard.php');
         exit;
     } else {
-        echo "identifiant incorrects";
+        echo 'identifiant incorrects';
     }
 }
 ?>

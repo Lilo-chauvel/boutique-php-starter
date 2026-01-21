@@ -1,12 +1,12 @@
 <?php
 $catalog = [
-    "T-shirt",
-    "Manteau",
-    "Jeans",
-    "Chaussettes",
-    "Pull"
+    'T-shirt',
+    'Manteau',
+    'Jeans',
+    'Chaussettes',
+    'Pull',
 ]
-    ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,13 +18,13 @@ $catalog = [
 </head>
 
 <body>
-    <?php $index = $_GET["index"] ?? null;
-    if ($catalog[$index]!== null){
-        echo $catalog[$index];
-    } else {
-        echo "produit non trouvé";
-    }
-     ?>
+    <?php $index = $_GET['index'] ?? null;
+if ($catalog[$index] !== null) {
+    echo $catalog[$index];
+} else {
+    echo 'produit non trouvé';
+}
+?>
 </body>
 
 </html>

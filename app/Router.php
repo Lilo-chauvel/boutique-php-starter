@@ -8,9 +8,8 @@ class Router
 
     /**
      * Register a GET route
-     * @param string $path
-     * @param array $action [controllerClass, methodName]
-     * @return void
+     *
+     * @param  array  $action  [controllerClass, methodName]
      */
     public function get(string $path, array $action): void
     {
@@ -19,9 +18,8 @@ class Router
 
     /**
      * Register a POST route
-     * @param string $path
-     * @param array $action [controllerClass, methodName]
-     * @return void
+     *
+     * @param  array  $action  [controllerClass, methodName]
      */
     public function post(string $path, array $action): void
     {
@@ -30,9 +28,6 @@ class Router
 
     /**
      * Dispatch the request to the correct controller
-     * @param string $uri
-     * @param string $method
-     * @return void
      */
     public function dispatch(string $uri, string $method): void
     {
@@ -41,11 +36,11 @@ class Router
 
         if (isset($this->routes[$method][$path])) {
             [$controllerClass, $methodName] = $this->routes[$method][$path];
-            $controllerInstance = new $controllerClass();
+            $controllerInstance = new $controllerClass;
             $controllerInstance->$methodName();
         } else {
             http_response_code(404);
-            echo "Page non trouvée";
+            echo 'Page non trouvée';
         }
     }
 }

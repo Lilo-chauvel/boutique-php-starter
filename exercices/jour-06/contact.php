@@ -22,31 +22,31 @@
     <div>
 
         <?php
-        $nom = htmlspecialchars($_POST["nom"]) ?? null;
-        $email = htmlspecialchars($_POST["email"]) ?? null;
-        $message = htmlspecialchars($_POST["message"]) ?? null;
+        $nom = htmlspecialchars($_POST['nom']) ?? null;
+        $email = htmlspecialchars($_POST['email']) ?? null;
+        $message = htmlspecialchars($_POST['message']) ?? null;
 
         $valide = true;
 
-        if ($nom !== null && $nom !== "" && $email != null && $email != "" && $message != null && $message != "") {
-            echo "Tous les champs requis ont était rempli";
+        if ($nom !== null && $nom !== '' && $email != null && $email != '' && $message != null && $message != '') {
+            echo 'Tous les champs requis ont était rempli';
 
         } else {
             echo "<p><strong>Erreur</strong> - Vous n'avez pas remplie tous les champs</p>";
             $valide = false;
         }
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo "<p>Email valide</p>";
+            echo '<p>Email valide</p>';
 
         } else {
             echo "<p><strong>Erreur</strong> - L'email est incorect</p>";
             $valide = false;
         }
         if (strlen($message) >= 10) {
-            echo "<p>le message contient plus 10 caractères</p>";
+            echo '<p>le message contient plus 10 caractères</p>';
 
         } else {
-            echo "<p><strong>Erreur</strong> - Votre message ne contient pas 10 caractère</p>";
+            echo '<p><strong>Erreur</strong> - Votre message ne contient pas 10 caractère</p>';
             $valide = false;
         }
 

@@ -10,7 +10,7 @@ function isOnSale($discount): bool
 }
 function isNew(string $dateAdded): bool
 {
-    return strtotime($dateAdded) > strtotime("-30 day");
+    return strtotime($dateAdded) > strtotime('-30 day');
 }
 function canorder($stock, $quantity): bool
 {
@@ -18,22 +18,21 @@ function canorder($stock, $quantity): bool
 }
 
 var_dump(isInStock(10));
-echo "<br>";
+echo '<br>';
 var_dump(isInStock(0));
-echo "<br>";
-echo "<br>";
+echo '<br>';
+echo '<br>';
 var_dump(isOnSale(10));
-echo "<br>";
+echo '<br>';
 var_dump(isOnSale(0));
-echo "<br>";
-echo "<br>";
-var_dump(isNew("31-12-2025"));
-echo "<br>";
-var_dump(isNew("14-08-2025"));
-echo "<br>";
-echo "<br>";
+echo '<br>';
+echo '<br>';
+var_dump(isNew('31-12-2025'));
+echo '<br>';
+var_dump(isNew('14-08-2025'));
+echo '<br>';
+echo '<br>';
 var_dump(canorder(5, 10));
-echo "<br>";
+echo '<br>';
 var_dump(canorder(5, 1));
-echo "<br>";
-?>
+echo '<br>';

@@ -1,10 +1,8 @@
 <?php
-$age;
 
-var_dump (match(true){
-    0<$age && $age<18 => "minor",
-    0 < $age && $age<25 => "Young adult",
-    0 < $age && $age<64 => "Adult",
-    default => "Senior"
-})
-?>
+var_dump(match (true) {
+    $age > 0 && $age < 18 => 'minor',
+    $age > 0 && $age < 25 => 'Young adult',
+    $age > 0 && $age < 64 => 'Adult',
+    default => 'Senior'
+});

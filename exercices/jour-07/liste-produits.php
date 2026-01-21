@@ -2,22 +2,22 @@
 <?php
 try {
     $pdo = new PDO(
-        "mysql:host=localhost;dbname=boutique;charset=utf8mb4",
-        "dev",
-        "dev",
+        'mysql:host=localhost;dbname=boutique;charset=utf8mb4',
+        'dev',
+        'dev',
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 } catch (PDOException $e) {
-    echo "Erreur : " . $e->getMessage();
+    echo 'Erreur : '.$e->getMessage();
     exit;
 }
 
 // Remplacez 'products' par le nom réel de votre table
-$stmt = $pdo->prepare("SELECT * FROM products");
+$stmt = $pdo->prepare('SELECT * FROM products');
 $stmt->execute();
 $catalog = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    ?>
+?>
 </pre>
 
 <!DOCTYPE html>

@@ -1,9 +1,10 @@
 <?php
-echo "<div style=\"visibility:collapse\">
-    ";
-require_once "class.php";
-echo "
-    </div>";
+
+echo '<div style="visibility:collapse">
+    ';
+require_once 'class.php';
+echo '
+    </div>';
 
 $electroniccategory = new categoryJ9(1, 'Électronique');
 $clothingcategory = new categoryJ9(2, 'Vêtements');
@@ -21,15 +22,15 @@ foreach ($catalogEx1 as $key => $product) {
     $tabcartItemEx2[$key] = new cartItem($product, random_int(1, 10));
 }
 // print_r($tabcartItemEx2[0]);
-$cart1 = new cart();
+$cart1 = new cart;
 foreach ($catalogEx1 as $key => $cartItem) {
     $cart1->addproduct($cartItem, $key);
 }
-$cart2 = new cart();
-$lilo = new user("Lilo", "lilo.chauvel@gmail.com");
-$nico = new user("nico", "nico@exemple.com");
+$cart2 = new cart;
+$lilo = new user('Lilo', 'lilo.chauvel@gmail.com');
+$nico = new user('nico', 'nico@exemple.com');
 count($lilo->arrayAdress);
-$lilo->addNewAdress(44, "rue de la Cécile", "Valence", 26000, "France");
+$lilo->addNewAdress(44, 'rue de la Cécile', 'Valence', 26000, 'France');
 $lilo->arrayAdress;
 $myorder = new order($lilo, $cart1);
 $myorder->getDate();

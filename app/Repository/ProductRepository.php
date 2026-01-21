@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+require_once __DIR__.'/../../vendor/autoload.php';
+
 use App\Class\Product;
 use PDO;
 
@@ -12,69 +14,70 @@ class ProductRepository
 {
     public function __construct(
         protected PDO $pdo
-    ) {
-    }
+    ) {}
 
     /**
      * Return the product of a given product in the database
-     * @param int $id
-     * @return Product|null
      */
     public function find(int $id): ?Product
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM products WHERE id = ?");
+        $stmt = $this->pdo->prepare('SELECT * FROM products WHERE id = ?');
         $stmt->execute([$id]);
         $data = $stmt->fetch();
+
         return $data ? $this->hydrate($data) : null;
     }
 
     /**
      * Return all the products
+     *
      * @return array
      */
-    public function findAll(): array
+    public function findAll()
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM products");
+        $stmt = $this->pdo->prepare('SELECT * FROM products');
         $stmt->execute();
+
         return array_map([$this, 'hydrate'], $stmt->fetchAll());
     }
 
     /**
      * Hydrate: convert array to object
-     * @param array $data
-     * @return Product
      */
     private function hydrate(array $data): Product
     {
-        return new Product(
+        return
+        new Product(
             id: (int) $data['id'],
             name: $data['name'],
             price: (float) $data['price'],
             stock: (int) $data['stock'],
-            category: (string) $data['category']
+            category: (string) $data['category'],
         );
     }
 
-    public function saveProduct(Product $product, string $description = ""): static
+    public function saveProduct(Product $product, string $description = ''): static
     {
         $id = $product->getId();
         $name = $product->getName();
         $price = $product->getPrice();
         $stock = $product->getStock();
         $category = $product->getCategory();
-        $stmt = $this->pdo->prepare("INSERT INTO products (id, name, description, price, stock, category) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt = $this->pdo->prepare('INSERT INTO products (id, name, description, price, stock, category) VALUES (?, ?, ?, ?, ?, ?)');
         $stmt->execute([$id, $name, $description, $price, $stock, $category]);
+
         return $this;
     }
+
     /** CA MARCHE PAS UPDATE POUR QUI JE VEUX ÇA ME SOUL
      * With a given id update the variable of the
      * In the array are waited like that [1=>name,2=>description,3=>price]
-     * @param int $id 
-     * @param string $name
-     * @param string $description
-     * @param float $price
-     * @param int $stock
-     * @param string $category
+     *
+     * @param  string  $name
+     * @param  string  $description
+     * @param  float  $price
+     * @param  int  $stock
+     * @param  string  $category
      * @return void
      */
     /**    public function updateproduct(int $id, array $tabInput): static
@@ -112,44 +115,47 @@ class ProductRepository
      *        return $this;
      *    }
      */
-
     public function deleteProduct(int $id): static
     {
-        $stmt = $this->pdo->prepare("DELETE FROM products WHERE id = ?");
+        $stmt = $this->pdo->prepare('DELETE FROM products WHERE id = ?');
         $stmt->execute([$id]);
+
         return $this;
     }
 
     public function findBycategory(int $idcategory)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM products WHERE category_id = ?");
+        $stmt = $this->pdo->prepare('SELECT * FROM products WHERE category_id = ?');
         $stmt->execute([$idcategory]);
-        $tabBycategory = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $tabBycategory;
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
     public function findInStock()
     {
-        $stmt = $this->pdo->query("SELECT * FROM products WHERE stock>0");
-        $tabInStock = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $tabInStock;
+        $stmt = $this->pdo->query('SELECT * FROM products WHERE stock>0');
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
     public function findByPriceRange(float $min, float $max)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM products WHERE price>? AND price<?");
+        $stmt = $this->pdo->prepare('SELECT * FROM products WHERE price>? AND price<?');
         $stmt->execute([$min, $max]);
-        $tabPriceRange = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $tabPriceRange;
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
     /**
      * Search in the dataBase column Name and Description
-     * @param string $term
+     *
      * @return array
      */
     public function search(string $term)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM products WHERE name LIKE ? OR description LIKE ?");
+        $stmt = $this->pdo->prepare('SELECT * FROM products WHERE name LIKE ? OR description LIKE ?');
         $stmt->execute(["%$term%", "%$term%"]);
-        $tabSearch = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $tabSearch;
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

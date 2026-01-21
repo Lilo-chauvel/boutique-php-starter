@@ -2,38 +2,39 @@
 
 namespace App\Controller;
 
-use productRepository;
-
 class HomeController
 {
-    private $product = new productRepository();
+    /**
+     * Summary of bonjour
+     *
+     * @return void
+     */
+    public function bonjour()
+    {
+        echo 'bonjour';
+    }
+
     /**
      * Display home page
-     * @return void
      */
     public function index(): void
     {
-        $title = "Bienvenu sur ma boutique";
-        require __DIR__ . '/../../views/home/index.php';
+        $title = 'Bienvenu sur ma boutique';
+        require __DIR__.'/../../views/home/index.php';
     }
 
-    public function show()
+    // -----------  FLASH   -----------
+    public function store(): void
     {
-        $id = htmlspecialchars($_GET['id']) ?? null;
-
-        if (!$id) {
-            $this->redirection(404);
-
-            require __DIR__ . '/../views/errors/404.php';
-            return;
-        }
-        require __DIR__ . '/../views/products/show.php';
+        // Après création réussie...
+        flash('success', 'Produit créé avec succès !');
+        redirect('/produits');
     }
 
-    public function redirection(string $url): void
+    public function destroy(): void
     {
-        header("Location : $url");
-        exit;
+        // Après suppression...
+        flash('warning', 'Produit supprimé.');
+        redirect('/produits');
     }
 }
-?>

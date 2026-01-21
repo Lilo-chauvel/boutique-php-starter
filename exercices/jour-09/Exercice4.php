@@ -1,9 +1,10 @@
 <?php
-echo "<div style=\"visibility:collapse\">
-    ";
-require_once "class.php";
-echo "
-    </div>";
+
+echo '<div style="visibility:collapse">
+    ';
+require_once 'class.php';
+echo '
+    </div>';
 
 $electroniccategory = new categoryJ9(1, 'Électronique');
 $clothingcategory = new categoryJ9(2, 'Vêtements');
@@ -25,13 +26,12 @@ foreach ($catalogEx1 as $key => $product) {
 }
 // print_r($tabcartItemEx2[0]);
 
-$cart1 = new cart();
+$cart1 = new cart;
 
-$lilo = new user("Lilo", "lilo.chauvel@gmail.com");
+$lilo = new user('Lilo', 'lilo.chauvel@gmail.com');
 
-echo (count($lilo->arrayAdress));
-$lilo->addNewAdress(44, "rue de la Cécile", "Valence", 26000, "France");
+echo count($lilo->arrayAdress);
+$lilo->addNewAdress(44, 'rue de la Cécile', 'Valence', 26000, 'France');
 print_r($lilo->arrayAdress);
-echo "<br>";
+echo '<br>';
 echo $lilo->getDefaultAddress();
-?>

@@ -6,33 +6,33 @@ $products = [
         'name' => 'Chaise ergonomique',
         'price' => 129.99,
         'stock' => 0,
-        'onSale' => true
+        'onSale' => true,
     ],
     [
         'name' => 'Bureau en bois',
         'price' => 249.50,
         'stock' => 10,
-        'onSale' => false
+        'onSale' => false,
     ],
     [
         'name' => 'Lampe LED',
         'price' => 39.90,
         'stock' => 120,
-        'onSale' => true
-    ]
+        'onSale' => true,
+    ],
 ];
 
 foreach ($products as $keys => $product) {
-    if ($product["stock"] === 0) {
-        $products[$keys]["classStock"] = "rupture";
+    if ($product['stock'] === 0) {
+        $products[$keys]['classStock'] = 'rupture';
     } else {
-        $products[$keys]["classStock"] = "disponible";
+        $products[$keys]['classStock'] = 'disponible';
     }
 
-    if ($product["onSale"]) {
-        $products[$keys]["afficheOnSale"] = "🔥 PROMO";
-        $products[$keys]["newPrice"] = $product["price"] * 0.8;
-        $products[$keys]["saleStyle"] = "strike";
+    if ($product['onSale']) {
+        $products[$keys]['afficheOnSale'] = '🔥 PROMO';
+        $products[$keys]['newPrice'] = $product['price'] * 0.8;
+        $products[$keys]['saleStyle'] = 'strike';
     }
 }
 // var_dump($products)
@@ -64,15 +64,15 @@ foreach ($products as $keys => $product) {
 
 <body>
 
-    <?php foreach ($products as $product): ?>
+    <?php foreach ($products as $product) { ?>
         <div class="product <?= $product ?>">
-            <h3><?= $product["name"] ?> </h3>
-            <p><?= $product["afficheOnSale"] ?></p>
-            <p class="<?= $product["saleStyle"] ?>">Prix : <?= $product["price"] ?> €</p>
-            <p><?= $product["newPrice"] ?></p>
-            <p class="<?= $product["classStock"] ?>">Stock : <?= $product["stock"] ?></p>
+            <h3><?= $product['name'] ?> </h3>
+            <p><?= $product['afficheOnSale'] ?></p>
+            <p class="<?= $product['saleStyle'] ?>">Prix : <?= $product['price'] ?> €</p>
+            <p><?= $product['newPrice'] ?></p>
+            <p class="<?= $product['classStock'] ?>">Stock : <?= $product['stock'] ?></p>
         </div>
-    <?php endforeach ?>
+    <?php } ?>
 </body>
 
 </html>

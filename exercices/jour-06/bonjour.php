@@ -16,7 +16,7 @@
 
     </form>
     <div>
-    <p>Bonjour <?= $name = $_GET["name"] ?? "visiteur"; ?> vous avez <?= $age = $_GET["age"]??"pas encore remplie le formulaire" ?> ans</p>
+    <p>Bonjour <?= $name = $_GET['name'] ?? 'visiteur'; ?> vous avez <?= $age = $_GET['age'] ?? 'pas encore remplie le formulaire' ?> ans</p>
     </div>
 </body>
 

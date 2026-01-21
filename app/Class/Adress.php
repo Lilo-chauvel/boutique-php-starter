@@ -19,22 +19,21 @@ class Adress
     /**
      * Set the postal code
      * Chainable
-     * @param int $postCode
+     *
      * @throws InvalidArgumentException
-     * @return self
      */
     private function setPostCode(int $postCode): self
     {
-        if (filter_var($postCode, FILTER_VALIDATE_REGEXP, ["options" => ["regexp" => "/^[0-9]{5}$/"]]) === false) {
+        if (filter_var($postCode, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^\d{5}$/']]) === false) {
             throw new InvalidArgumentException("Le code postal n'est pas valide");
         }
         $this->postCode = $postCode;
+
         return $this;
     }
 
     /**
      * Get the postal code
-     * @return int
      */
     public function getPostCode(): int
     {
@@ -43,10 +42,9 @@ class Adress
 
     /**
      * Get the full address
-     * @return string
      */
     public function getAddress(): string
     {
-        return $this->streetNumber . " " . $this->street . ", " . $this->postCode . " " . $this->town . ", " . $this->country;
+        return $this->streetNumber.' '.$this->street.', '.$this->postCode.' '.$this->town.', '.$this->country;
     }
 }

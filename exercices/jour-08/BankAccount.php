@@ -3,6 +3,7 @@
 class BankAccount
 {
     private float $balance;
+
     public function __construct(
         float $urBalance
     ) {
@@ -12,7 +13,7 @@ class BankAccount
     public function setBalance(float $urBalance)
     {
         if ($urBalance < 0) {
-            throw new InvalidArgumentException("Votre balance doit-être positive");
+            throw new InvalidArgumentException('Votre balance doit-être positive');
         } else {
             $this->balance = $urBalance;
         }
@@ -22,34 +23,35 @@ class BankAccount
     {
         $this->balance = $this->balance + $amount;
     }
+
     public function withdraw($amount)
     {
         $balanceAfterWithdraw = $this->balance - $amount;
         if ($balanceAfterWithdraw < 0) {
-            echo "Votre solde est insuffisant, il vous manque ". -$balanceAfterWithdraw." €";
-        }elseif($balanceAfterWithdraw===0.00){
+            echo 'Votre solde est insuffisant, il vous manque '.-$balanceAfterWithdraw.' €';
+        } elseif ($balanceAfterWithdraw === 0.00) {
             $this->balance = $balanceAfterWithdraw;
-            echo "Retrait accepté, attention il vous reste " . $balanceAfterWithdraw . " €";
-        } 
-        else {
+            echo 'Retrait accepté, attention il vous reste '.$balanceAfterWithdraw.' €';
+        } else {
             $this->balance = $balanceAfterWithdraw;
         }
     }
+
     public function getBalance()
     {
-        echo $this->balance." €";
+        echo $this->balance.' €';
     }
 }
 
 $MyMoney = new BankAccount(10);
 $MyMoney->getBalance();
-echo "<br>";
+echo '<br>';
 $MyMoney->withdraw(12);
-echo "<br>";
+echo '<br>';
 $MyMoney->deposit(2);
-echo "<br>";
+echo '<br>';
 $MyMoney->withdraw(12);
-echo "<br>";
+echo '<br>';
 $MyMoney->getBalance();
 
 ?>

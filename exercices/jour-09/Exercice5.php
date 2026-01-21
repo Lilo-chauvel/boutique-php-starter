@@ -1,9 +1,10 @@
 <?php
-echo "<div style=\"visibility:collapse\">
-    ";
-require_once "class.php";
-echo "
-    </div>";
+
+echo '<div style="visibility:collapse">
+    ';
+require_once 'class.php';
+echo '
+    </div>';
 
 $electroniccategory = new category(1, 'Électronique');
 $clothingcategory = new category(2, 'Vêtements');
@@ -25,41 +26,41 @@ foreach ($catalogEx1 as $key => $product) {
 }
 // print_r($tabcartItemEx2[0]);
 
-$cart1 = new cart();
+$cart1 = new cart;
 foreach ($catalogEx1 as $cartItem) {
     $cart1->addproduct($cartItem, 2);
 }
 
-$cart2 = new cart();
+$cart2 = new cart;
 
-$lilo = new user("Lilo", "lilo.chauvel@gmail.com");
-$nico = new user("nico", "nico@exemple.com");
+$lilo = new user('Lilo', 'lilo.chauvel@gmail.com');
+$nico = new user('nico', 'nico@exemple.com');
 
 count($lilo->arrayAdress);
-$lilo->addNewAdress(44, "rue de la Cécile", "Valence", 26000, "France");
+$lilo->addNewAdress(44, 'rue de la Cécile', 'Valence', 26000, 'France');
 $lilo->arrayAdress;
 
 $myorder = new order($lilo, $cart1);
 echo $myorder->getDate();
-echo "<br>";
+echo '<br>';
 echo $myorder->getId();
-echo "<br>";
+echo '<br>';
 echo $myorder->getItemCount();
-echo "<br>";
+echo '<br>';
 echo $myorder->getTotalorder();
-echo " €<br>";
+echo ' €<br>';
 var_dump(order::$TabIdorder);
-echo " <br>";
-echo " <br>";
+echo ' <br>';
+echo ' <br>';
 
 $nicoorder = new order($nico, $cart2);
 echo $nicoorder->getDate();
-echo "<br>";
+echo '<br>';
 echo $nicoorder->getId();
-echo "<br>";
+echo '<br>';
 echo $nicoorder->getItemCount();
-echo "<br>";
+echo '<br>';
 echo $nicoorder->getTotalorder();
-echo " €<br>";
+echo ' €<br>';
 
 var_dump(order::$TabIdorder);

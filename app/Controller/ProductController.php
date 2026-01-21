@@ -2,9 +2,8 @@
 
 namespace App\Controller;
 
+use App\Db\Database;
 use App\Repository\ProductRepository;
-use Config\Database;
-
 
 class ProductController
 {
@@ -18,32 +17,33 @@ class ProductController
 
     /**
      * Display all products
-     * @return void
      */
     public function index(): void
     {
-        $products = $this->repository->findAll();
-        require __DIR__ . '/../views/products/index.php';
+        $allProducts = $this->repository->findAll();
+        require __DIR__.'/../../views/products/index.php';
     }
 
     /**
      * Display a single product
-     * @return void
      */
     public function show(): void
     {
         $id = $_GET['id'] ?? null;
-        if (!$id) {
-            http_response_code(404);
-            return;
-        }
-
         $product = $this->repository->find((int) $id);
-        if (!$product) {
+        if (!$product instanceof \App\Class\Product && $id != null) {
+            // Ex5 J12 - A integrer
+            // $_SESSION['old'] = $_POST;
+            // redirect('/contact');
             http_response_code(404);
-            return;
-        }
 
-        require __DIR__ . '/../views/products/show.php';
+            return;
+        } elseif ($id === null) {
+            echo 'isset valider';
+            header('Location: produits');
+            exit;
+        } else {
+            require __DIR__.'/../../views/products/show.php';
+        }
     }
 }

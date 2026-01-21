@@ -1,16 +1,14 @@
 <?php
 
-//---- Structure d'un Repository ----
+// ---- Structure d'un Repository ----
 class productRepository
 {
-    public function __construct(private PDO $pdo)
-    {
-    }
+    public function __construct(private PDO $pdo) {}
 
     // READ - Un seul
     public function find(int $id): ?product
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM products WHERE id = ?");
+        $stmt = $this->pdo->prepare('SELECT * FROM products WHERE id = ?');
         $stmt->execute([$id]);
         $data = $stmt->fetch();
 
@@ -20,7 +18,8 @@ class productRepository
     // READ - Tous
     public function findAll(): array
     {
-        $stmt = $this->pdo->query("SELECT * FROM products");
+        $stmt = $this->pdo->query('SELECT * FROM products');
+
         return array_map([$this, 'hydrate'], $stmt->fetchAll());
     }
 
@@ -28,12 +27,12 @@ class productRepository
     public function save(product $product): void
     {
         $stmt = $this->pdo->prepare(
-            "INSERT INTO products (nom, prix, stock) VALUES (?, ?, ?)"
+            'INSERT INTO products (nom, prix, stock) VALUES (?, ?, ?)'
         );
         $stmt->execute([
             $product->getName(),
             $product->getPrice(),
-            $product->getStock()
+            $product->getStock(),
         ]);
     }
 
@@ -41,20 +40,21 @@ class productRepository
     public function update(product $product): void
     {
         $stmt = $this->pdo->prepare(
-            "UPDATE products SET nom = ?, prix = ?, stock = ? WHERE id = ?"
+            'UPDATE products SET nom = ?, prix = ?, stock = ? WHERE id = ?'
         );
         $stmt->execute([
             $product->getName(),
             $product->getPrice(),
             $product->getStock(),
-            $product->getId()
+            $product->getId(),
         ]);
     }
+
     // setPrice
     // DELETE
     public function delete(int $id): void
     {
-        $stmt = $this->pdo->prepare("DELETE FROM products WHERE id = ?");
+        $stmt = $this->pdo->prepare('DELETE FROM products WHERE id = ?');
         $stmt->execute([$id]);
     }
 
@@ -72,11 +72,10 @@ class productRepository
     }
 }
 
-
 // UTILISATION
 
 // Configuration
-$pdo = new PDO("mysql:host=localhost;dbname=boutique", "dev", "dev");
+$pdo = new PDO('mysql:host=localhost;dbname=boutique', 'dev', 'dev');
 $productRepo = new productRepository($pdo);
 
 // Récupérer tous les produits
@@ -86,7 +85,7 @@ $products = $productRepo->findAll();
 $product = $productRepo->find(42);
 
 // Créer un produit
-$newproduct = new product(id: 20, name: "Casquette", price: 19.99, stock: 100, category: "Accessoires");
+$newproduct = new product(id: 20, name: 'Casquette', price: 19.99, stock: 100, category: 'Accessoires');
 $productRepo->save($newproduct);
 
 // Modifier
@@ -95,9 +94,6 @@ $productRepo->update($product);
 
 // Supprimer
 $productRepo->delete(42);
-
-
-
 
 /**
  * Méthodes de recherche personnalisées
@@ -109,26 +105,29 @@ class productRepositoryWithRecherche
     public function findBycategory(int $categoryId): array
     {
         $stmt = $this->pdo->prepare(
-            "SELECT * FROM products WHERE category_id = ?"
+            'SELECT * FROM products WHERE category_id = ?'
         );
         $stmt->execute([$categoryId]);
+
         return array_map([$this, 'hydrate'], $stmt->fetchAll());
     }
 
     public function findInStock(): array
     {
         $stmt = $this->pdo->query(
-            "SELECT * FROM products WHERE stock > 0"
+            'SELECT * FROM products WHERE stock > 0'
         );
+
         return array_map([$this, 'hydrate'], $stmt->fetchAll());
     }
 
     public function search(string $term): array
     {
         $stmt = $this->pdo->prepare(
-            "SELECT * FROM products WHERE nom LIKE ?"
+            'SELECT * FROM products WHERE nom LIKE ?'
         );
         $stmt->execute(["%$term%"]);
+
         return array_map([$this, 'hydrate'], $stmt->fetchAll());
     }
 }

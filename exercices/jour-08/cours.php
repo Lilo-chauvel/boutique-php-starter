@@ -5,7 +5,9 @@ class productJ8
 {
     // Propriétés (les données)
     public string $name;
+
     public float $price;
+
     public int $stock;
 
     // Méthode (le comportement)
@@ -15,12 +17,13 @@ class productJ8
     }
 }
 
-
-//---- Le constructeur ----
+// ---- Le constructeur ----
 class productJ81
 {
     public string $name;
+
     public float $price;
+
     public int $stock;
 
     public function __construct(string $name, float $price, int $stock = 0)
@@ -32,9 +35,9 @@ class productJ81
 }
 
 // Utilisation
-$product = new productJ81("T-shirt", 29.99, 50);
+$product = new productJ81('T-shirt', 29.99, 50);
 
-//----  Encapsulation : public vs private ----
+// ----  Encapsulation : public vs private ----
 class productJ82
 {
     private float $price; // Accessible uniquement dans la classe
@@ -54,25 +57,25 @@ class productJ82
     public function setPrice(float $price): void
     {
         if ($price < 0) {
-            throw new InvalidArgumentException("Prix négatif interdit");
+            throw new InvalidArgumentException('Prix négatif interdit');
         }
         $this->price = $price;
     }
 }
 
-$p = new productJ82("T-shirt", 29.99);
+$p = new productJ82('T-shirt', 29.99);
 // $p->price = -10;   // ❌ Erreur : private
 $p->setPrice(25);     // ✅ Passe par la validation
 echo $p->getPrice();  // 25
 
-
-//---- Cool PHP that I bild ----
+// ---- Cool PHP that I bild ----
 class user
 {
     private function verifage(int $age)
     {
-        if ($age < 0)
-            throw new Exception("Âge impossible");
+        if ($age < 0) {
+            throw new Exception('Âge impossible');
+        }
         $this->age = $age;
     }
 
@@ -89,4 +92,3 @@ class user
 
     }
 }
-?>

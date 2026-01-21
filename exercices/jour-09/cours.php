@@ -1,13 +1,12 @@
 <?php
 
-//---- Relation simple : product et category ----
+// ---- Relation simple : product et category ----
 class categoryJ9
 {
     public function __construct(
         private int $id,
         private string $name
-    ) {
-    }
+    ) {}
 
     public function getName(): string
     {
@@ -22,17 +21,18 @@ class productJ9
         private string $name,
         private float $price,
         private category $category // Relation !
-    ) {
-    }
+    ) {}
 
     public function getcategory(): category
     {
         return $this->category;
     }
+
     public function getName(): string
     {
         return $this->name;
     }
+
     public function getPrice()
     {
         return $this->price;
@@ -44,21 +44,18 @@ class productJ9
     }
 }
 
-$clothes = new categoryJ9(1, "Vêtements");
-$tshirt = new productJ9(1, "T-shirt", 29.99, $clothes);
+$clothes = new categoryJ9(1, 'Vêtements');
+$tshirt = new productJ9(1, 'T-shirt', 29.99, $clothes);
 
-
-
-
-//---- Composition : cart et cartItem --    --
+// ---- Composition : cart et cartItem --    --
 
 class cartItem
 {
     public function __construct(
         private product $product,
         private int $quantity = 1
-    ) {
-    }
+    ) {}
+
     public function decremente(int $quantityDecrement): void
     {
         $quantityAfterDecrement = $this->quantity - $quantityDecrement;
@@ -97,7 +94,6 @@ class cartItem
 
 class cart
 {
-
     private array $items = [];
 
     public function addproduct(product $product, int $quantity = 1): void
@@ -133,6 +129,7 @@ class cart
         foreach ($this->items as $item) {
             $total += $item->getTotal();
         }
+
         return $total;
     }
 

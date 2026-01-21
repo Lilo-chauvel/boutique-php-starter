@@ -1,6 +1,6 @@
 <?php
 
-namespace Config;
+namespace App\Db;
 
 use PDO;
 use PDOException;
@@ -11,19 +11,20 @@ class Database
 
     public static function getInstance(): PDO
     {
-        if (self::$instance === null) {
+        if (!self::$instance instanceof \PDO) {
             try {
                 self::$instance = new PDO(
-                    "mysql:host=localhost;dbname=boutique;charset=utf8mb4",
-                    "dev",
-                    "dev",
+                    'mysql:host=localhost;dbname=boutique;charset=utf8mb4',
+                    'dev',
+                    'dev',
                     [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
                 );
             } catch (PDOException $e) {
-                echo "Erreur : " . $e->getMessage();
+                echo 'Erreur : '.$e->getMessage();
                 exit;
             }
         }
+
         return self::$instance;
     }
 }

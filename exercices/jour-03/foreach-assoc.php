@@ -1,11 +1,11 @@
 <?php
 $infoPersonnelle = [
-    "name" => "mark",
-    "age" => "44",
-    "city" => "Paris",
-    "job" => "Ingenieur"
+    'name' => 'mark',
+    'age' => '44',
+    'city' => 'Paris',
+    'job' => 'Ingenieur',
 ]
-    ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,9 +18,9 @@ $infoPersonnelle = [
 
 <body>
     <section>
-        <?php foreach ($infoPersonnelle as $key=>$info): ?>
-            <p><strong><?= $key?></strong> : <?=	$info?></p>
-        <?php endforeach ?>
+        <?php foreach ($infoPersonnelle as $key => $info) { ?>
+            <p><strong><?= $key?></strong> : <?= $info?></p>
+        <?php } ?>
     </section>
 </body>
 

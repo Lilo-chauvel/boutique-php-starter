@@ -1,7 +1,6 @@
 <?php
 
 // Fonctions de calcul :
-
 function calculateIncludingTax(float $priceExcludingTax, float $vat = 20): float
 {
     return $priceExcludingTax * (1 + ($vat / 100));
@@ -14,7 +13,7 @@ function calculateTotal(array $cart): float
 {
     $total = 0;
     foreach ($cart as $article) {
-        $total = $total + $article;
+        $total += $article;
     }
 
     return $total;
@@ -47,7 +46,7 @@ function formatDate(string $date): string
         'décembre',
     ];
 
-    return $jour.' '.$moisAn[($mois - 1)].' '.$annee;
+    return $jour.' '.$moisAn[((int) $mois - 1)].' '.$annee;
 
 } // → "15 janvier 2024";
 
@@ -59,7 +58,7 @@ function displayStockStatus(int $stock): string
     match (true) {
         $stock <= 0 => $style = 'style = "background : red "',
         $stock < 5 => $style = 'style = "background : orange "',
-        $stock >= 5 => $style = 'style = "background : green "',
+        default => $style = 'style = "background : green "',
     };
 
     return "<span $style>$stock</span>";
@@ -87,24 +86,26 @@ function afficheStock($catalog, $key): string
         '</p>';
 }
 
-function IsNew($article)
+function IsNew(bool $article)
 {
-    $article['new'] === true ?
-        '<span style =" background-color: grey;
+    if ($article) {
+        return '<span style =" background-color: blue;
             color: white;
             border-radius: 5px;
             padding: 5px;
-            ">New</span>'
-        : null;
+            ">New</span>';
+    }
+    return null;
+
 }
 
-function IsInPromo($article)
+function IsInPromo($price, $discount)
 {
-    if ($article['discount'] > 0) {
-        return '<p>Promo '.$article['discount'].'%</p>
-                        <p>'.round($article['price'] * (1 - ($article['discount'] / 100)), 2).' €</p>';
+    if ($discount > 0) {
+        return '<p>Promo '.$discount.'%</p>
+                        <p>'.round($price * (1 - ($discount / 100)), 2).' €</p>';
     } else {
-        return '<p>'.$article['price'].' €</p>';
+        return '<p>'.$price.' €</p>';
     }
 }
 
@@ -151,13 +152,68 @@ function validatePrice(mixed $price): bool
 } // → true si nombre positif
 
 // Fonction de debug :
-
-function dump_and_die(mixed $var): void
+function dump_and_die(mixed $var, string $message): void
 {
     $type = get_debug_type($var);
     echo "<pre style=\"background: #1e1e1e; color: #4ec9b0; padding: 20px; border-radius: 5px;\">
+    $message
     Type : $type
     Value : $var
     </pre>";
     exit();
+}
+function Afficheprice(float $price, bool $Isvalide): float
+{
+    if ($Isvalide) {
+        return $price;
+    } else {
+        dump_and_die($price, 'Prix invalide');
+        exit;
+    }
+}
+
+function e($string)
+{
+    return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+}
+
+function view(string $template, array $data = []): void
+{
+    extract($data);
+
+    ob_start();
+    require __DIR__."/../views/$template.php";
+    $content = ob_get_clean();
+
+    require __DIR__.'/../views/layout.php';
+}
+
+function redirect(string $url): void
+{
+    header("Location: $url");
+    exit;
+}
+
+// -----------------------
+// Fonction FLASH
+function flash(string $type, string $message): void
+{
+    $_SESSION['flash'] = [
+        'type' => $type,
+        'message' => $message,
+    ];
+}
+
+function getFlash(): ?array
+{
+    $flash = $_SESSION['flash'] ?? null;
+    unset($_SESSION['flash']);
+
+    return $flash;
+}
+
+// Récupérer l'ancienne valeur d'un champ
+function old(string $key, string $default = ''): string
+{
+    return $_SESSION['old'][$key] ?? $default;
 }

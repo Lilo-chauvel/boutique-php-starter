@@ -6,15 +6,15 @@ function displayBadge($text, $color)
 }
 function displayPrice($price, $discount = 0)
 {
-    return "<span" . ($discount > 0 ? ' style="text-decoration:line-through"' : null) . ">$price</span>";
+    return '<span'.($discount > 0 ? ' style="text-decoration:line-through"' : null).">$price</span>";
 }
 function displayStock($quantity)
 {
-    $style = "";
+    $style = '';
     match (true) {
-        $quantity <= 0 => $style = "style = \"background : red \"",
-        $quantity < 5 => $style = "style = \"background : orange \"",
-        $quantity > 5 => $style = "style = \"background : green \"",
+        $quantity <= 0 => $style = 'style = "background : red "',
+        $quantity < 5 => $style = 'style = "background : orange "',
+        $quantity > 5 => $style = 'style = "background : green "',
     };
 
     return "<span $style>$quantity</span>";
@@ -31,7 +31,7 @@ function displayStock($quantity)
 </head>
 
 <body>
-    <p><?= displayBadge("Bonjour!", "red"); ?></p>
+    <p><?= displayBadge('Bonjour!', 'red'); ?></p>
     <p><?= displayPrice(100, 10); ?></p>
     <p><?= displayPrice(100); ?></p>
     <p><?= displayStock(10); ?></p>

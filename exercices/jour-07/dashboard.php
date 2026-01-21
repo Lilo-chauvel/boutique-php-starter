@@ -1,13 +1,12 @@
 <?php
-require("/var/www/boutique/public/helpers.php");
+require '/var/www/boutique/public/helpers.php';
 session_start();
 
-
-if (!isset($_SESSION["user"])) {
-    header("Location: login.php");
+if (! isset($_SESSION['user'])) {
+    header('Location: login.php');
     exit;
 } else {
-    echo "Bonjour " . $_SESSION["user"];
+    echo 'Bonjour '.$_SESSION['user'];
 }
 ?>
 

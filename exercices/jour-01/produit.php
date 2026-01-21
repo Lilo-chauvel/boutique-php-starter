@@ -1,5 +1,6 @@
 <?php
-$name = "T-shirt";
+
+$name = 'T-shirt';
 $price = 35.99;
 $stock = 45;
 $onSale = true;
