@@ -81,4 +81,7 @@ class Product
     {
         return [$this->getId(), $this->getName(), $this->getPrice(), $this->getStock()];
     }
-}
+    //Crée moi une fonction qui transforme mon id en identifiant unique
+
+
+    }

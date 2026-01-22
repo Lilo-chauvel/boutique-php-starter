@@ -8,7 +8,6 @@ class CartItem
         private Product $product,
         private int $quantity = 1
     ) {}
-
     /**
      * Decrement quantity
      * Chainable

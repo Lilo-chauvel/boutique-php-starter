@@ -24,7 +24,6 @@ class ProductRepository
         $stmt = $this->pdo->prepare('SELECT * FROM products WHERE id = ?');
         $stmt->execute([$id]);
         $data = $stmt->fetch();
-
         return $data ? $this->hydrate($data) : null;
     }
 
@@ -37,7 +36,6 @@ class ProductRepository
     {
         $stmt = $this->pdo->prepare('SELECT * FROM products');
         $stmt->execute();
-
         return array_map([$this, 'hydrate'], $stmt->fetchAll());
     }
 
